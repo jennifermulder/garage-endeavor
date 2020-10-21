@@ -1,68 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Online Buy, Sell, Trade Application: Garage Endeavors
 
-## Available Scripts
+![](client/src/assets/images/shop-shop.jpg)
 
-In the project directory, you can run:
+## Purpose
+To create a online shopping application, offering various items for sale.
 
-### `npm start`
+## Features
+When the user loads the site, they are able to view a homepage with various products from cookies, to toilet paper, to soap. The user can add products from the homepage to the shopping cart OR navigate to a desired category to view the products within that designation. When navigating to a specific category, the user can select a product and add to the shopping cart. When adding to the shopping cart, the cart will open and display the options to edit the quantity or checkout. Upon checkout, the user is redirected to a Stripe payment page to enter their information. The user is notified of successful payment completion and redirected back to the site to continue shopping!
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Built With
+* React JS
+* JavaScript
+* Apollo
+* GraphQL
+* Heroku
+* Node JS 
+* NoSQL - MongoDB
+* Express
+* Mongoose
+* Concurrently
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Usage
+To run program: node server
 
-### `npm test`
+## Deployed Application
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Project Status
+Garage Endeavors is complete in adherence with acceptance criteria
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Contribution
+Created by Sarah Chu, Scot Itakura, and Jennifer Mulder
