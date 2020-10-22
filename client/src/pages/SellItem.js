@@ -7,11 +7,11 @@ import { UPDATE_PRODUCTS } from '../utils/actions';
 import Auth from "../utils/auth";
 
 const SellItem = () => {
-    const [formState, setFormState] = useState({ title: '', category: '', price: '', description: '', image: '', seller: Auth.getProfile().data._id });
-    console.log(formState);
-
-    const { loading, data } = useQuery(QUERY_PRODUCTS);
     const [state, dispatch] = useStoreContext();
+    const [formState, setFormState] = useState({ title: '', category: '', price: '', description: '', image: '', seller: Auth.getProfile().data._id });
+    const { loading, data } = useQuery(QUERY_PRODUCTS);
+    const { categories } = state;
+    // FIXME: no data, state coming through
 
     const handleFormSubmit = async event => {
         event.preventDefault();
@@ -20,10 +20,9 @@ const SellItem = () => {
 
         // }
         if(formState.title && formState.category && formState.price && formState.description) {
-            console.log(`${formState.title}, ${formState.category}, ${formState.price}, ${formState.description}`);
+            console.log(formState);
 
             if (data) {
-                // FIXME: no data coming through
                 const newProductList = [...data.products, formState];
                 console.log('data', data)
                 console.log(newProductList)
@@ -69,11 +68,15 @@ const SellItem = () => {
                 onChange={handleChange}
             />
             <label>Category</label>
-            <input 
+            <select 
                 name='category'
                 placeholder='Add a category'
                 onChange={handleChange}
-            />
+            >
+                {categories.map(category => (
+                    <option value={category}>{category}</option>
+                ))}
+            </select>
             <label>Price</label>
             <input 
                 name='price'
