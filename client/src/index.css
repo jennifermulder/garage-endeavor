@@ -208,3 +208,7 @@ input:focus {
     width: 100%;
   }
 }
+
+.garage div:hover {
+  background-position: 0 -515px !important;
+}
