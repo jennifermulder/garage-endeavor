@@ -4,9 +4,12 @@ import { useQuery } from '@apollo/react-hooks';
 import { idbPromise } from "../utils/helpers";
 import { useStoreContext } from '../utils/GlobalState';
 import { UPDATE_PRODUCTS } from '../utils/actions';
+import Auth from "../utils/auth";
 
 const SellItem = () => {
-    const [formState, setFormState] = useState({ title: '', category: '', price: '', description: '', image: '' });
+    const [formState, setFormState] = useState({ title: '', category: '', price: '', description: '', image: '', seller: Auth.getProfile().data._id });
+    console.log(formState);
+
     const { loading, data } = useQuery(QUERY_PRODUCTS);
     const [state, dispatch] = useStoreContext();
 
@@ -20,9 +23,9 @@ const SellItem = () => {
             console.log(`${formState.title}, ${formState.category}, ${formState.price}, ${formState.description}`);
 
             if (data) {
-                // FIXME: not data.products isn't coming through
+                // FIXME: no data coming through
                 const newProductList = [...data.products, formState];
-                console.log('data', data.products)
+                console.log('data', data)
                 console.log(newProductList)
                 dispatch({
                   type: UPDATE_PRODUCTS,
@@ -32,7 +35,8 @@ const SellItem = () => {
                 newProductList.forEach((product) => {
                   idbPromise('products', 'put', product);
                 });
-              } else if (!loading) {
+            } 
+            else if (!loading) {
                 idbPromise('products', 'get').then((products) => {
                   dispatch({
                     type: UPDATE_PRODUCTS,
