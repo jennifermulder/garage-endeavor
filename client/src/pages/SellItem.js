@@ -8,7 +8,9 @@ import Auth from "../utils/auth";
 
 const SellItem = () => {
     const [state, dispatch] = useStoreContext();
-    const [formState, setFormState] = useState({ title: '', category: '', price: '', description: '', image: '', seller: Auth.getProfile().data._id });
+    console.log(Auth.getProfile().data._id);
+    // const [formState, setFormState] = useState({ title: '', category: '', price: '', description: '', image: '', seller: Auth.getProfile().data._id });
+    const [formState, setFormState] = useState({ title: '', category: 'Food', price: '', description: '', image: '' });
     const { data, loading } = useQuery(QUERY_PRODUCTS);
     const { categories } = state;
     console.log('state', state);
