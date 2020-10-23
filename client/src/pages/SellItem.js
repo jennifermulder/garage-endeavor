@@ -9,18 +9,18 @@ import Auth from "../utils/auth";
 const SellItem = () => {
     const [state, dispatch] = useStoreContext();
     const [formState, setFormState] = useState({ title: '', category: '', price: '', description: '', image: '', seller: Auth.getProfile().data._id });
-    const { loading, data } = useQuery(QUERY_PRODUCTS);
+    const { data, loading } = useQuery(QUERY_PRODUCTS);
     const { categories } = state;
+    console.log('state', state);
+    if(data){
+        console.log('data', data)
+    }
     // FIXME: no data, state coming through
 
     const handleFormSubmit = async event => {
         event.preventDefault();
-
-        // if(formState.title && formState.price && formState.description && formState.image) {
-
-        // }
+        console.log('handle submit', formState);
         if(formState.title && formState.category && formState.price && formState.description) {
-            console.log(formState);
 
             if (data) {
                 const newProductList = [...data.products, formState];
