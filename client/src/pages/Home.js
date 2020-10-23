@@ -1,29 +1,30 @@
 import React from "react";
 import styled from "styled-components"
 import openGarage from "../assets/images/open-garage-door.png"
-import garageDoor from "../assets/images/garage-door.jpg"
+import garageDoor from "../assets/images/garage-door.png"
 import garageSign from "../assets/images/garage-sale-sign.gif"
 
 const StyledHomeBackground = styled.div`
   position: fixed;
   background-image: url(${openGarage});
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-size: 126vh;
   background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-repeat: repeat-x;
 ;`
 
 const GarageDoorDiv = styled.div`
   position: relative;
-  top: -1%;
-  left: 0;
-  width: 515px;
-  height: 290px;
   background-image: url(${garageDoor});
-  background-size: 515px 290px;
+  top: -1%;
+  left: 0.7%;
+  width: 492px;
+  height: 276px;
+  background-size: 492px 276px;
   background-repeat: no-repeat;
   -webkit-transition: background-position 1s ease;
   -moz-transition: background-position 1s ease;
@@ -32,7 +33,7 @@ const GarageDoorDiv = styled.div`
   transition: background-position 1s ease;
 ;`
 
-const CenteredSign= styled.div`
+const CenteredSign = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,14 +53,14 @@ const GarageSign = styled.div`
 const Home = () => {
   return (
     <div className="">
-      <CenteredSign>
+      {/* <CenteredSign> */}
         <GarageSign/>
-      </CenteredSign>
+      {/* </CenteredSign> */}
 
       <StyledHomeBackground className="garage">
-        <GarageDoorDiv>
+        {/* <GarageDoorDiv>
 
-        </GarageDoorDiv>
+        </GarageDoorDiv> */}
       </StyledHomeBackground>
     </div>
   );

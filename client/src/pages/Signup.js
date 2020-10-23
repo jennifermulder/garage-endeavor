@@ -38,7 +38,7 @@ function Signup(props) {
     height: 100vh;
     width: 100vw;
     background-position: center;
-    background-size: 40%;
+    background-size: 35%;
     display: flex;
     justify-content: center;
     align-items: center;
