@@ -37,7 +37,7 @@ function Login(props) {
     height: 100vh;
     width: 100vw;
     background-position: center;
-    background-size: 37%;
+    background-size: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
