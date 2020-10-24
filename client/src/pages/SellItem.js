@@ -1,41 +1,35 @@
 import React, { useState } from "react";
 import { QUERY_PRODUCTS } from "../utils/queries";
-import { useQuery } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import { idbPromise } from "../utils/helpers";
 import { useStoreContext } from '../utils/GlobalState';
 import { UPDATE_PRODUCTS } from '../utils/actions';
+import { ADD_PRODUCT } from '../utils/mutations';
 import Auth from "../utils/auth";
 
 const SellItem = () => {
     const [state, dispatch] = useStoreContext();
-    console.log(Auth.getProfile().data._id);
-    // const [formState, setFormState] = useState({ title: '', category: '', price: '', description: '', image: '', seller: Auth.getProfile().data._id });
-    const [formState, setFormState] = useState({ title: '', category: 'Food', price: '', description: '', image: '' });
+    const [ addProduct, {error} ] = useMutation(ADD_PRODUCT);
+    const [formState, setFormState] = useState({ name: '', category: '5f924623323598356c1a444a', price: '', description: '', image: '', user: Auth.getProfile().data._id });
+    // const [formState, setFormState] = useState({ name: '', category: '5f924623323598356c1a444a', price: '', description: '', image: '' });
     const { data, loading } = useQuery(QUERY_PRODUCTS);
     const { categories } = state;
-    console.log('state', state);
-    if(data){
-        console.log('data', data)
-    }
-    // FIXME: no data, state coming through
 
     const handleFormSubmit = async event => {
         event.preventDefault();
         console.log('handle submit', formState);
-        if(formState.title && formState.category && formState.price && formState.description) {
+        if(formState.name && formState.category && formState.price) {
 
             if (data) {
-                const newProductList = [...data.products, formState];
-                console.log('data', data)
-                console.log(newProductList)
+                const newProduct = await addProduct(formState);
+                console.log({newProduct});
+                // const newProductList = [...data.products, newProduct];
                 dispatch({
                   type: UPDATE_PRODUCTS,
-                  products: newProductList
+                  products: [...data.products, newProduct]
                 });
             
-                newProductList.forEach((product) => {
-                  idbPromise('products', 'put', product);
-                });
+                idbPromise('products', 'put', newProduct);
             } 
             else if (!loading) {
                 idbPromise('products', 'get').then((products) => {
@@ -47,7 +41,7 @@ const SellItem = () => {
             }
         }
         else{
-            console.log("error");
+            //console.log("error");
         }
     };
 
@@ -65,7 +59,7 @@ const SellItem = () => {
         <form onSubmit={handleFormSubmit}>
             <label>Listing Title</label>
             <input 
-                name='title'
+                name='name'
                 placeholder='Add a title'
                 onChange={handleChange}
             />
@@ -76,13 +70,20 @@ const SellItem = () => {
                 onChange={handleChange}
             >
                 {categories.map(category => (
-                    <option value={category}>{category}</option>
+                    <option value={category._id}>{category.name}</option>
                 ))}
             </select>
             <label>Price</label>
             <input 
                 name='price'
                 placeholder='Add a price'
+                onChange={handleChange}
+            />
+            <label for="quantity">Quantity:</label>
+            <input 
+                type='number'
+                name='quantity'
+                placeholder='1'
                 onChange={handleChange}
             />
             <label>Item Description</label>

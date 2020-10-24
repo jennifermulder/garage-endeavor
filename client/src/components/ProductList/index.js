@@ -13,8 +13,11 @@ function ProductList() {
 const [state, dispatch] = useStoreContext();
 //products are being retrieved from the state object
 const { currentCategory } = state;
+console.log({state})
 
 const { loading, data } = useQuery(QUERY_PRODUCTS);
+// FIXME: data is undefined
+console.log({data})
 //when product data from the useQuery() Hook's response to the global state object is saved with the dispatch() method, we also save each file to the products object store in IndexedDB using the idbPromise() function
 useEffect(() => {
   // if there's data to be stored
