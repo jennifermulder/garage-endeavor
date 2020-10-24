@@ -32,7 +32,6 @@ const GarageDoorDiv = styled.div`
   margin: 0.5vh 0 0 2vh;
   z-index: 3;
   display: flex;
-  // flex-direction: column;
   align-items: center;
 ;`
 
@@ -54,11 +53,6 @@ const Stylediv = styled.div`
 ;`
 
 const Buttondiv = styled.section`
-  // flex-direction: row;
-;`
-
-const RealButtondiv = styled.section`
-  position: relative;
   // flex-direction: row;
 ;`
 
@@ -94,39 +88,20 @@ const TradeButton = styled(Button)`
   background-color: darkcyan;
 ;`
 
-const RealButton = styled.button`
-  height: 8vh;
-  width: 16vh;
-  position: fixed;
-  font-size: 1.2em;
-  margin: 0.7em;
-  padding: 0.25em 0.5em;
-  border: 2px solid;
-  border-radius: 3px;
-  z-index: 1;
-;`
-
-const RealBuyButton = styled(RealButton)`
-  color: black;
-  border-color: black;
-  background-color: darkcyan;
-  margin-top: 25%; 
-;`
-
-const RealSellButton = styled(RealButton)`
-  color: black;
-  border-color: black;
-  background-color: darkcyan;
-  margin-top: 25%;
-;`
-
-const RealTradeButton = styled(RealButton)`
-  color: black;
-  border-color: black;
-  background-color: darkcyan;
-;`
-
 const Home = () => {
+  const [buttonClass,setButtonClass] = React.useState('');
+  const [garageClass,setGarageClass] = React.useState('');
+
+  function check() {
+    console.log('I have changed!');
+  }
+
+  function makeButtonsZedIndexGoUp() {
+    console.log('BUTTONS SHOULD HAVE HIGHER ZED INDEX');
+    setButtonClass('make-button-visible');
+    setGarageClass('make-garage-door-stay-up');
+  }
+
   return (
     <div className="">
       <StyledHomeBackground className="garage">
@@ -134,23 +109,14 @@ const Home = () => {
           <GarageSign/>
           <Stylediv>
             <Buttondiv href="#">
-              <BuyButton href="#">Buy</BuyButton>
+              <BuyButton className={buttonClass} onMouseEnter={() => check()} href="#">Buy</BuyButton>
               <SellButton href="#">Sell</SellButton>
               <Stylediv>
                 <TradeButton href="#">Trade</TradeButton>
               </Stylediv>
             </Buttondiv>
             
-            <RealButtondiv>
-              <BuyButton href="#">Buy</BuyButton>
-              <SellButton href="#">Sell</SellButton>
-              <Stylediv>
-                <TradeButton href="#">Trade</TradeButton>
-              </Stylediv>
-            </RealButtondiv>
-            
-            <GarageDoorDiv>
-            </GarageDoorDiv>
+            <GarageDoorDiv className={garageClass} onMouseEnter={() => makeButtonsZedIndexGoUp()} />
           </Stylediv>
         </Stylediv>
       </StyledHomeBackground>

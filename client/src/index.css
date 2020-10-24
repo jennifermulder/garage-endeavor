@@ -218,3 +218,11 @@ input:focus {
 .garage div:hover {
   background-position: 0 -515px !important;
 }
+/* probably move this to the component folder css */
+.make-button-visible {
+  z-index: 4 !important;
+}
+
+.make-garage-door-stay-up {
+  background-position: 0 -515px !important;
+}
