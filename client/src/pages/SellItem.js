@@ -1,27 +1,62 @@
-import React, { useState } from "react";
-import { QUERY_PRODUCTS } from "../utils/queries";
+import React, { useState, useEffect } from "react";
+import { QUERY_PRODUCTS, QUERY_CATEGORIES } from "../utils/queries";
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { idbPromise } from "../utils/helpers";
 import { useStoreContext } from '../utils/GlobalState';
-import { UPDATE_PRODUCTS } from '../utils/actions';
+import { UPDATE_PRODUCTS, UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../utils/actions';
 import { ADD_PRODUCT } from '../utils/mutations';
 import Auth from "../utils/auth";
 
 const SellItem = () => {
     const [state, dispatch] = useStoreContext();
+    console.log({state})
     const [ addProduct, {error} ] = useMutation(ADD_PRODUCT);
     const [formState, setFormState] = useState({ name: '', category: '5f924623323598356c1a444a', price: '', description: '', image: '', user: Auth.getProfile().data._id });
-    // const [formState, setFormState] = useState({ name: '', category: '5f924623323598356c1a444a', price: '', description: '', image: '' });
     const { data, loading } = useQuery(QUERY_PRODUCTS);
-    const { categories } = state;
+    const { data: categoryData } = useQuery(QUERY_CATEGORIES);
+    console.log({data})
+    let { categories } = state;
+    categories = categories.slice(0, 5);
+
+    useEffect(() => {
+
+        // if categoryData exists or has changed from the response of useQuery, then run dispatch()
+        if (categoryData) {
+          dispatch({
+            type: UPDATE_CATEGORIES,
+            categories: categoryData.categories
+          });
+          //save to idb store
+          categoryData.categories.forEach(category => {
+            idbPromise('categories', 'put', category);
+          });
+        }
+        else if (!loading) {
+          idbPromise('categories', 'get').then(categories => {
+            dispatch({
+              type: UPDATE_CATEGORIES,
+              categories: categories
+            });
+          });
+        }
+    }, [categoryData, loading, dispatch]);
 
     const handleFormSubmit = async event => {
         event.preventDefault();
         console.log('handle submit', formState);
-        if(formState.name && formState.category && formState.price) {
+        if(formState.name && formState.category && formState.price && formState.user) {
 
             if (data) {
-                const newProduct = await addProduct(formState);
+                const newProduct = await addProduct({
+                    variables: {
+                      name: formState.name, 
+                      description: formState.description,
+                      image: formState.image, 
+                      price: parseInt(formState.price),
+                      category: formState.category,
+                      user: formState.user
+                    }
+                  }); 
                 console.log({newProduct});
                 // const newProductList = [...data.products, newProduct];
                 dispatch({
@@ -29,7 +64,7 @@ const SellItem = () => {
                   products: [...data.products, newProduct]
                 });
             
-                idbPromise('products', 'put', newProduct);
+                idbPromise('products', 'put', newProduct.data.addProduct);
             } 
             else if (!loading) {
                 idbPromise('products', 'get').then((products) => {
@@ -42,6 +77,7 @@ const SellItem = () => {
         }
         else{
             //console.log("error");
+            // TODO: error handling for required fields
         }
     };
 
@@ -69,6 +105,7 @@ const SellItem = () => {
                 placeholder='Add a category'
                 onChange={handleChange}
             >
+                {/* TODO: add a filter helper function to filter out duplicates */}
                 {categories.map(category => (
                     <option value={category._id}>{category.name}</option>
                 ))}
@@ -84,6 +121,7 @@ const SellItem = () => {
                 type='number'
                 name='quantity'
                 placeholder='1'
+                min='1'
                 onChange={handleChange}
             />
             <label>Item Description</label>
