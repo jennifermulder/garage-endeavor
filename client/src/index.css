@@ -105,9 +105,9 @@ button {
   background-color: var(--secondary);
 }
 
-button:hover {
+/* button:hover {
   opacity: .8;
-}
+} */
 
 button[disabled] {
   cursor: default;
@@ -221,6 +221,9 @@ input:focus {
 /* probably move this to the component folder css */
 .make-button-visible {
   z-index: 4 !important;
+  opacity: 1 !important;
+  -webkit-transition: opacity 1.4s;
+  transition: opacity 1.4s;
 }
 
 .make-garage-door-stay-up {
