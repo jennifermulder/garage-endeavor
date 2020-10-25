@@ -158,6 +158,8 @@ db.once('open', async () => {
     }
   ]);
 
+  console.log({products})
+
   console.log('products seeded');
 
   await User.updateOne(
