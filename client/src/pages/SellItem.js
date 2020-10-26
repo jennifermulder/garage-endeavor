@@ -9,56 +9,85 @@ import Auth from "../utils/auth";
 
 const SellItem = () => {
     const [state, dispatch] = useStoreContext();
-    console.log({state})
-    const [ addProduct, {error} ] = useMutation(ADD_PRODUCT);
-    const [formState, setFormState] = useState({ name: '', category: '5f924623323598356c1a444a', price: '', description: '', image: '', user: Auth.getProfile().data._id });
-    const { data, loading } = useQuery(QUERY_PRODUCTS);
     const { data: categoryData } = useQuery(QUERY_CATEGORIES);
-    console.log({data})
+    // console.log({data})
     let { categories } = state;
+    // console.log({state})
+    const [ addProduct, {error} ] = useMutation(ADD_PRODUCT);
+    // const [ uploadImage ] = useMutation(UPLOAD_IMAGE);
+    const [formState, setFormState] = useState({ name: '', category: '', quantity: '', price: '', description: '', image: '', user: Auth.getProfile().data._id });
+    const { data, loading } = useQuery(QUERY_PRODUCTS);
     categories = categories.slice(0, 5);
 
     useEffect(() => {
-
         // if categoryData exists or has changed from the response of useQuery, then run dispatch()
         if (categoryData) {
-          dispatch({
-            type: UPDATE_CATEGORIES,
-            categories: categoryData.categories
-          });
-          //save to idb store
-          categoryData.categories.forEach(category => {
-            idbPromise('categories', 'put', category);
-          });
+            setFormState({
+                ...formState,
+                category: categoryData.categories[0]._id
+            });
+
+            dispatch({
+                type: UPDATE_CATEGORIES,
+                categories: categoryData.categories
+            });
+            //save to idb store
+            categoryData.categories.forEach(category => {
+                idbPromise('categories', 'put', category);
+            });
         }
         else if (!loading) {
-          idbPromise('categories', 'get').then(categories => {
-            dispatch({
-              type: UPDATE_CATEGORIES,
-              categories: categories
+            idbPromise('categories', 'get').then(categories => {
+                dispatch({
+                type: UPDATE_CATEGORIES,
+                categories: categories
+                });
             });
-          });
         }
-    }, [categoryData, loading, dispatch]);
+    }, [categoryData, loading, dispatch, formState]);
 
     const handleFormSubmit = async event => {
         event.preventDefault();
-        console.log('handle submit', formState);
-        if(formState.name && formState.category && formState.price && formState.user) {
+        // console.log('handle submit', formState);
+        if(formState.name && formState.price && formState.user) {
+            console.log({formState})
 
             if (data) {
+                let img = '';
+                
+                let d = new FormData();
+                d.append('image', formState.image)
+                // const uploadImg = await uploadImage({
+                //     variables: {
+                //         file: d
+                //     }
+                // })
+                if(formState.image) {
+                    // const response = await fetch(`/api/upload/`, {
+                    //     method: 'POST',
+                    //     body: d
+                    // })
+
+                    // if(response.ok) {
+                    //     setFormState({
+                    //         ...formState,
+                    //         image: response
+                    //     })
+                    // }
+                }
+                console.log({formState});
                 const newProduct = await addProduct({
                     variables: {
                       name: formState.name, 
                       description: formState.description,
-                      image: formState.image, 
+                      quantity: parseInt(formState.quantity),
+                      image: img,
                       price: parseInt(formState.price),
                       category: formState.category,
                       user: formState.user
                     }
                   }); 
                 console.log({newProduct});
-                // const newProductList = [...data.products, newProduct];
                 dispatch({
                   type: UPDATE_PRODUCTS,
                   products: [...data.products, newProduct]
@@ -82,7 +111,10 @@ const SellItem = () => {
     };
 
     const handleChange = event => {
-        const { name, value } = event.target;
+        let { name, value } = event.target;
+        if(name === 'image') {
+            value = document.querySelector('#image').files[0];
+        }
         setFormState({
           ...formState,
           [name]: value
@@ -130,12 +162,13 @@ const SellItem = () => {
                 placeholder='Add a description'
                 onChange={handleChange}
             />
-            {/* <label>Upload an Image</label>
+            <label>Upload an Image</label>
             <input 
                 name='image'
+                id='image'
                 type='file'
                 onChange={handleChange}
-            /> */}
+            />
             <button type='submit'>Add Listing</button>
         </form>
       </div>
