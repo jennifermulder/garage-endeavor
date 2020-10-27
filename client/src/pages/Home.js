@@ -1,65 +1,125 @@
 import React from "react";
-import styled from "styled-components"
-import openGarage from "../assets/images/open-garage-door.png"
-import garageDoor from "../assets/images/garage-door.jpg"
-import garageSign from "../assets/images/garage-sale-sign.gif"
+import styled from "styled-components";
+import openGarage from "../assets/images/open-garage-door.png";
+import garageDoor from "../assets/images/garage-door.png";
+import garageSign from "../assets/images/garage-sale-sign.gif";
+import { Link } from "react-router-dom";
 
 const StyledHomeBackground = styled.div`
-  position: fixed;
-  background-image: url(${openGarage});
-  height: 100vh;
-  width: 100vw;
-  background-size: 126vh;
-  background-position: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-;`
+  position: absolute;
+  background-image: url(${openGarage});
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  background-size: 100vh 100%;
+  background-position: center;
+  background-repeat: repeat-x;
+  z-index: -1; ;
+`;
 
 const GarageDoorDiv = styled.div`
-  position: relative;
-  top: -1%;
-  left: 0;
-  width: 515px;
-  height: 290px;
+  position: absolute;
   background-image: url(${garageDoor});
-  background-size: 515px 290px;
+  background-size: 100% 100%;
+  height: 33vh;
+  width: 52vh;
   background-repeat: no-repeat;
-  -webkit-transition: background-position 1s ease;
-  -moz-transition: background-position 1s ease;
-  -ms-transition: background-position 1s ease;
-  -o-transition: background-position 1s ease;
   transition: background-position 1s ease;
-;`
-
-const CenteredSign= styled.div`
+  margin: 0.5vh 0 0 2vh;
+  z-index: 3;
   display: flex;
-  justify-content: center;
-  align-items: center;
-;`
+  align-items: center; ;
+`;
 
-const GarageSign = styled.div`
-  position: fixed;
-  top: 18%;
+const GarageSign = styled.section`
   background-image: url(${garageSign});
   background-size: 100% 100%;
-  height: 144px;
-  width: 216px;
+  height: 17vh;
+  width: 27vh;
   background-repeat: no-repeat;
+  z-index: 2;
+  margin-top: 21vh; ;
+`;
+
+const Stylediv = styled.div`
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+// const Tradediv = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// `;
+
+const Buttondiv = styled.section`
+  margin-top: 33%;
+`;
+
+const Button = styled(Link)`
+  height: 8vh;
+  width: 16vh;
+  position: relative;
+  font-size: 3vh;
+  margin: 3vh 4.5vh;
+  padding: 2vh 4vh;
+  border: 2px solid;
+  border-radius: 3px;
   z-index: 1;
-;`
+  -webkit-transition: opacity 1.4s;
+  transition: opacity 1.4s;
+  opacity: 0;
+  color: black;
+  border-color: black;
+  background-color: cyan;
+  text-align: center;
+`;
 
 const Home = () => {
+  const [buttonClass, setButtonClass] = React.useState("");
+  const [garageClass, setGarageClass] = React.useState("");
+
+  function makeButtonZedGoDown() {
+    setButtonClass("");
+    setGarageClass("");
+  }
+
+  function makeButtonsZedIndexGoUp() {
+    setButtonClass("make-button-visible");
+    setGarageClass("make-garage-door-stay-up");
+  }
+
   return (
     <div className="">
-      <CenteredSign>
-        <GarageSign/>
-      </CenteredSign>
-
       <StyledHomeBackground className="garage">
-        <GarageDoorDiv>
+        <Stylediv>
+          <GarageSign />
+          <Stylediv>
+            <Buttondiv href="#">
+              <Button to="/buy" className={buttonClass} 
+              onMouseEnter={() => makeButtonsZedIndexGoUp()}>Buy</Button>
+              <Button to="/sell-item" className={buttonClass}
+              onMouseEnter={() => makeButtonsZedIndexGoUp()}>Sell</Button>
+              {/* <Tradediv>
+                <Button to="/trade" className={buttonClass}
+              onMouseEnter={() => makeButtonsZedIndexGoUp()}>Trade</Button>
+              </Tradediv> */}
+            </Buttondiv>
 
-        </GarageDoorDiv>
+            <GarageDoorDiv
+              className={garageClass}
+              onMouseEnter={() => makeButtonsZedIndexGoUp()}
+              onMouseLeave={() => makeButtonZedGoDown()}
+            />
+          </Stylediv>
+        </Stylediv>
       </StyledHomeBackground>
     </div>
   );
