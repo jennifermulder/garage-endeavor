@@ -114,12 +114,15 @@ const Home = () => {
           <GarageSign />
           <Stylediv>
             <Buttondiv href="#">
-              <BuyButton className={buttonClass} href="#">
+              <BuyButton className={buttonClass} 
+              onMouseEnter={() => makeButtonsZedIndexGoUp()} href="#">
                 Buy
               </BuyButton>
-              <SellButton className={buttonClass} href="#">Sell</SellButton>
+              <SellButton className={buttonClass}
+              onMouseEnter={() => makeButtonsZedIndexGoUp()} href="#">Sell</SellButton>
               <Stylediv>
-                <TradeButton className={buttonClass} href="#">Trade</TradeButton>
+                <TradeButton className={buttonClass}
+              onMouseEnter={() => makeButtonsZedIndexGoUp()} href="#">Trade</TradeButton>
               </Stylediv>
             </Buttondiv>
 
