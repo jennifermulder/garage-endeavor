@@ -15,6 +15,7 @@ const SellItem = () => {
     // console.log({state})
     const [ addProduct, {error} ] = useMutation(ADD_PRODUCT);
     // const [ uploadImage ] = useMutation(UPLOAD_IMAGE);
+    let defaultCategory = '';
     const [formState, setFormState] = useState({ name: '', category: '', quantity: '', price: '', description: '', image: '', user: Auth.getProfile().data._id });
     const { data, loading } = useQuery(QUERY_PRODUCTS);
     categories = categories.slice(0, 5);
@@ -22,11 +23,6 @@ const SellItem = () => {
     useEffect(() => {
         // if categoryData exists or has changed from the response of useQuery, then run dispatch()
         if (categoryData) {
-            setFormState({
-                ...formState,
-                category: categoryData.categories[0]._id
-            });
-
             dispatch({
                 type: UPDATE_CATEGORIES,
                 categories: categoryData.categories
@@ -44,38 +40,17 @@ const SellItem = () => {
                 });
             });
         }
-    }, [categoryData, loading, dispatch, formState]);
+    }, [categoryData, loading, dispatch]);
 
     const handleFormSubmit = async event => {
         event.preventDefault();
         // console.log('handle submit', formState);
-        if(formState.name && formState.price && formState.user) {
+
+        if(formState.name && formState.price && formState.category && formState.user) {
             console.log({formState})
 
             if (data) {
                 let img = '';
-                
-                let d = new FormData();
-                d.append('image', formState.image)
-                // const uploadImg = await uploadImage({
-                //     variables: {
-                //         file: d
-                //     }
-                // })
-                if(formState.image) {
-                    // const response = await fetch(`/api/upload/`, {
-                    //     method: 'POST',
-                    //     body: d
-                    // })
-
-                    // if(response.ok) {
-                    //     setFormState({
-                    //         ...formState,
-                    //         image: response
-                    //     })
-                    // }
-                }
-                console.log({formState});
                 const newProduct = await addProduct({
                     variables: {
                       name: formState.name, 
@@ -137,6 +112,7 @@ const SellItem = () => {
                 placeholder='Add a category'
                 onChange={handleChange}
             >
+                <option value="" hidden>Choose a category...</option>
                 {/* TODO: add a filter helper function to filter out duplicates */}
                 {categories.map(category => (
                     <option value={category._id}>{category.name}</option>
