@@ -11,7 +11,8 @@ import spinner from "../../assets/spinner.gif"
 
 function UserProductList() {
 // //immediately execute to retrieve current global state object, dispatch to update state  
-const [dispatch] = useStoreContext();
+const [state, dispatch] = useStoreContext();
+const {products} = state;
 // //products are being retrieved from the state object
 // const { currentCategory } = state;
 
@@ -43,22 +44,22 @@ useEffect(() => {
   }
 }, [data, loading, dispatch]);
 
-function filterProducts() {
+function filterProducts(products) {
   //????
-  console.log(data)
-  if (!data) {
-    return data.products;
+  console.log({products})
+  if (!products) {
+    return products;
   }
 
-  return data.products.filter(product => product.user._id === Auth.getProfile().data._id);
+  return products.filter(product => product.user._id === Auth.getProfile().data._id);
 }
 
   return (
     <div className="my-2">
       <h2>Our Products:</h2>
-      {data.products.length ? (
+      {products.length ? (
         <div className="flex-row">
-            {filterProducts().map(product => (
+            {filterProducts(products).map(product => (
                 <ProductItem
                   key= {product._id}
                   _id={product._id}
