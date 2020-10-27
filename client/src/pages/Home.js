@@ -3,6 +3,7 @@ import styled from "styled-components";
 import openGarage from "../assets/images/open-garage-door.png";
 import garageDoor from "../assets/images/garage-door.png";
 import garageSign from "../assets/images/garage-sale-sign.gif";
+import { Link } from "react-router-dom";
 
 const StyledHomeBackground = styled.div`
   display: flex;
@@ -49,46 +50,36 @@ const Stylediv = styled.div`
   background-size: 100% 100%;
   display: flex;
   flex-direction: column;
-  align-items: center; ;
+  align-items: center;
+`;
+
+const Tradediv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Buttondiv = styled.section`
-  // flex-direction: row; ;
+  margin-top: 30%;
 `;
 
-const Button = styled.button`
+const Button = styled(Link)`
   height: 8vh;
   width: 16vh;
   position: relative;
   font-size: 1.2em;
-  margin: 0.7em;
-  padding: 0.25em 0.5em;
+  margin: 1.8em 1.5em;
+  padding: 0.8em 1em;
   border: 2px solid;
   border-radius: 3px;
   z-index: 1;
   -webkit-transition: opacity 1.4s;
   transition: opacity 1.4s;
   opacity: 0;
-`;
-
-const BuyButton = styled(Button)`
   color: black;
   border-color: black;
   background-color: darkcyan;
-  margin-top: 25%; ;
-`;
-
-const SellButton = styled(Button)`
-  color: black;
-  border-color: black;
-  background-color: darkcyan;
-  margin-top: 25%; ;
-`;
-
-const TradeButton = styled(Button)`
-  color: black;
-  border-color: black;
-  background-color: darkcyan; ;
+  text-align: center;
 `;
 
 const Home = () => {
@@ -96,13 +87,11 @@ const Home = () => {
   const [garageClass, setGarageClass] = React.useState("");
 
   function makeButtonZedGoDown() {
-    console.log("I should lower");
     setButtonClass("");
     setGarageClass("");
   }
 
   function makeButtonsZedIndexGoUp() {
-    console.log("BUTTONS SHOULD HAVE HIGHER ZED INDEX");
     setButtonClass("make-button-visible");
     setGarageClass("make-garage-door-stay-up");
   }
@@ -114,16 +103,14 @@ const Home = () => {
           <GarageSign />
           <Stylediv>
             <Buttondiv href="#">
-              <BuyButton className={buttonClass} 
-              onMouseEnter={() => makeButtonsZedIndexGoUp()} href="#">
-                Buy
-              </BuyButton>
-              <SellButton className={buttonClass}
-              onMouseEnter={() => makeButtonsZedIndexGoUp()} href="#">Sell</SellButton>
-              <Stylediv>
-                <TradeButton className={buttonClass}
-              onMouseEnter={() => makeButtonsZedIndexGoUp()} href="#">Trade</TradeButton>
-              </Stylediv>
+              <Button to="/buy" className={buttonClass} 
+              onMouseEnter={() => makeButtonsZedIndexGoUp()}>Buy</Button>
+              <Button to="/sell" className={buttonClass}
+              onMouseEnter={() => makeButtonsZedIndexGoUp()}>Sell</Button>
+              <Tradediv>
+                <Button to="/trade" className={buttonClass}
+              onMouseEnter={() => makeButtonsZedIndexGoUp()}>Trade</Button>
+              </Tradediv>
             </Buttondiv>
 
             <GarageDoorDiv
