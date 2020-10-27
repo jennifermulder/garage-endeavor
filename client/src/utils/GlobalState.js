@@ -17,7 +17,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     currentCategory: '',
   });
   // use this to confirm it works!
-  console.log(state);
+  //console.log(state);
   //return when useProductReducer is run. Need to return props or nothing will render
   return <Provider value={[state, dispatch]} {...props} />;
 };

@@ -42,7 +42,7 @@ const Cart = () => {
     }
   }, [data]);
 
-  console.log(state)
+  //console.log(state)
   function toggleCart() {
     dispatch({ type: TOGGLE_CART });
   }
