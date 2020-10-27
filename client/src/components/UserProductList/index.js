@@ -6,12 +6,12 @@ import { QUERY_PRODUCTS } from "../../utils/queries";
 import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
-import Auth from ('../utils/auth');
+import Auth from '../../utils/auth';
 import spinner from "../../assets/spinner.gif"
 
 function UserProductList() {
 // //immediately execute to retrieve current global state object, dispatch to update state  
-// const [state, dispatch] = useStoreContext();
+const [dispatch] = useStoreContext();
 // //products are being retrieved from the state object
 // const { currentCategory } = state;
 
@@ -45,11 +45,12 @@ useEffect(() => {
 
 function filterProducts() {
   //????
-  if (!currentCategory) {
+  console.log(data)
+  if (!data) {
     return data.products;
   }
 
-  return data.products.filter(product => product.user._id == Auth.getProfile().data._id);
+  return data.products.filter(product => product.user._id === Auth.getProfile().data._id);
 }
 
   return (

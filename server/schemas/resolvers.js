@@ -101,7 +101,7 @@ const resolvers = {
       return { token, user };
     },
     addOrder: async (parent, { products }, context) => {
-      console.log(context);
+      //console.log(context);
       if (context.user) {
         const order = new Order({ products });
 
@@ -140,6 +140,14 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    addProduct: async (parent, args, context) => {
+      console.log({context})
+      if(context.user) {
+        const product = await Product.create(args);
+        return product;
+      }
+      throw new AuthenticationError('You need to be logged in!');
     }
   }
 };

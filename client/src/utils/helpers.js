@@ -11,7 +11,7 @@ export function pluralize(name, count) {
 export function idbPromise(storeName, method, object) {
   return new Promise((resolve, reject) => {
     // open connection to the database `shop-shop` with the version of 1
-    const request = window.indexedDB.open('shop-shop', 1);
+    const request = window.indexedDB.open('garageendeavor', 1);
 
     // create variables to hold reference to the database, transaction (tx), and object store
     let db, tx, store;
@@ -27,7 +27,7 @@ export function idbPromise(storeName, method, object) {
 
     // handle any errors with connecting
     request.onerror = function (e) {
-      console.log('There was an error');
+      //console.log('There was an error');
     };
 
     // on database open success
@@ -41,12 +41,13 @@ export function idbPromise(storeName, method, object) {
 
       // if there's any errors, let us know
       db.onerror = function (e) {
-        console.log('error', e);
+        //console.log('error', e);
       };
       
       //check which value we passed into the function as a method and perform that method on the object store:
       switch (method) {
         case 'put':
+          console.log({object})
           store.put(object);
           resolve(object);
           break;
@@ -60,7 +61,7 @@ export function idbPromise(storeName, method, object) {
           store.delete(object._id);
           break;
         default:
-          console.log('No valid method');
+          //console.log('No valid method');
           break;
       }
 
