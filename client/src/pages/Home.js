@@ -53,23 +53,23 @@ const Stylediv = styled.div`
   align-items: center;
 `;
 
-const Tradediv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+// const Tradediv = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// `;
 
 const Buttondiv = styled.section`
-  margin-top: 30%;
+  margin-top: 33%;
 `;
 
 const Button = styled(Link)`
   height: 8vh;
   width: 16vh;
   position: relative;
-  font-size: 1.2em;
-  margin: 1.8em 1.5em;
-  padding: 0.8em 1em;
+  font-size: 3vh;
+  margin: 3vh 4.5vh;
+  padding: 2vh 4vh;
   border: 2px solid;
   border-radius: 3px;
   z-index: 1;
@@ -78,7 +78,7 @@ const Button = styled(Link)`
   opacity: 0;
   color: black;
   border-color: black;
-  background-color: darkcyan;
+  background-color: cyan;
   text-align: center;
 `;
 
@@ -105,12 +105,12 @@ const Home = () => {
             <Buttondiv href="#">
               <Button to="/buy" className={buttonClass} 
               onMouseEnter={() => makeButtonsZedIndexGoUp()}>Buy</Button>
-              <Button to="/sell" className={buttonClass}
+              <Button to="/sell-item" className={buttonClass}
               onMouseEnter={() => makeButtonsZedIndexGoUp()}>Sell</Button>
-              <Tradediv>
+              {/* <Tradediv>
                 <Button to="/trade" className={buttonClass}
               onMouseEnter={() => makeButtonsZedIndexGoUp()}>Trade</Button>
-              </Tradediv>
+              </Tradediv> */}
             </Buttondiv>
 
             <GarageDoorDiv
