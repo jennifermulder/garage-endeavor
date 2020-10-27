@@ -222,8 +222,8 @@ input:focus {
 .make-button-visible {
   z-index: 4 !important;
   opacity: 1 !important;
-  -webkit-transition: opacity 1.4s;
-  transition: opacity 1.4s;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
 }
 
 .make-garage-door-stay-up {
