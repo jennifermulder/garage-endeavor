@@ -44,7 +44,7 @@ const SellItem = () => {
                 });
             });
         }
-    }, [categoryData, loading, dispatch, formState]);
+    }, [categoryData, loading, dispatch]);
 
     const handleFormSubmit = async event => {
         event.preventDefault();
