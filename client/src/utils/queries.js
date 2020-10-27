@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 
+// FIXME: breaks when trying to query field user _id
 export const QUERY_PRODUCTS = gql`
   query getProducts($category: ID) {
     products(category: $category) {
@@ -10,6 +11,9 @@ export const QUERY_PRODUCTS = gql`
       quantity
       image
       category {
+        _id
+      }
+      user {
         _id
       }
     }
@@ -26,6 +30,9 @@ export const QUERY_ALL_PRODUCTS = gql`
       quantity
       category {
         name
+      }
+      user {
+        _id
       }
     }
   }
