@@ -26,6 +26,9 @@ const client = new ApolloClient({
   },
   uri: '/graphql',
 })
+
+
+
 //store provider from globalstate.js
 function App() {
   return (
