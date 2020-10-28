@@ -1,11 +1,88 @@
 import React, { useState, useEffect } from "react";
 import { QUERY_PRODUCTS, QUERY_CATEGORIES } from "../utils/queries";
-import { useMutation, useQuery } from '@apollo/react-hooks';
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { idbPromise } from "../utils/helpers";
-import { useStoreContext } from '../utils/GlobalState';
-import { UPDATE_PRODUCTS, UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../utils/actions';
-import { ADD_PRODUCT } from '../utils/mutations';
+import { useStoreContext } from "../utils/GlobalState";
+import {
+  UPDATE_PRODUCTS,
+  UPDATE_CATEGORIES,
+  UPDATE_CURRENT_CATEGORY,
+} from "../utils/actions";
+import { ADD_PRODUCT } from "../utils/mutations";
 import Auth from "../utils/auth";
+import styled from "styled-components";
+import sellPattern from "../assets/images/sell-background.jpg";
+
+const SellBackground = styled.div`
+  background-image: url(${sellPattern});
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-position: center;
+  background-size: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: repeat;
+;`
+
+const WhiteBackground = styled.div`
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  color: black;
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+;`
+
+const StyledForm = styled.form`
+  width: 100%;
+;`
+
+const StyledInput = styled.input`
+  width: 100%;
+  padding: 5px 10px;
+  margin: 1px 0;
+  margin-bottom: 10px;
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 4px;
+  box-sizing: border-box;
+;`
+
+const StyledSelect = styled.select`
+  width: 100%;
+  padding: 5px 5px;
+  margin: 1px 0;
+  margin-bottom: 10px;
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 4px;
+  box-sizing: border-box;
+;`
+
+const StyledTextArea = styled.textarea`
+  width: 100%;
+  padding: 10px 10px;
+  margin: 1px 0;
+  margin-bottom: 10px;
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 4px;
+  box-sizing: border-box;
+;`
+
+const StyledPhotoInput = styled.input`
+  width: 100%;
+  padding: 5px 10px;
+  margin: 1px 0;
+  margin-bottom: 20px;
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 4px;
+  box-sizing: border-box;
+;`
 
 const SellItem = () => {
     const [state, dispatch] = useStoreContext();
@@ -90,62 +167,70 @@ const SellItem = () => {
         setFormState({
           ...formState,
           [name]: value
-        });
-    };
+    });
+  };
 
-    return (
+  return (
+    <SellBackground>
       <div className="container">
-        <h1>Add a Listing</h1>
-        <form onSubmit={handleFormSubmit}>
+        <WhiteBackground>
+          <h1>Add a Listing</h1>
+          <StyledForm onSubmit={handleFormSubmit}>
             <label>Listing Title</label>
-            <input 
-                name='name'
-                placeholder='Add a title'
-                onChange={handleChange}
+            <StyledInput
+              name="name"
+              placeholder="Add a title"
+              onChange={handleChange}
             />
             <label>Category</label>
-            <select 
-                name='category'
-                placeholder='Add a category'
-                onChange={handleChange}
+            <StyledSelect
+              name="category"
+              placeholder="Add a category"
+              onChange={handleChange}
             >
-                <option value="" hidden>Choose a category...</option>
-                {/* TODO: add a filter helper function to filter out duplicates */}
-                {categories.map(category => (
-                    <option value={category._id}>{category.name}</option>
-                ))}
-            </select>
+              <option value="" hidden>
+                Choose a category...
+              </option>
+              {/* TODO: add a filter helper function to filter out duplicates */}
+              {categories.map((category) => (
+                <option value={category._id}>{category.name}</option>
+              ))}
+            </StyledSelect>
             <label>Price</label>
-            <input 
-                name='price'
-                placeholder='Add a price'
-                onChange={handleChange}
+            <StyledInput
+              name="price"
+              placeholder="Add a price"
+              onChange={handleChange}
             />
             <label for="quantity">Quantity:</label>
-            <input 
-                type='number'
-                name='quantity'
-                placeholder='1'
-                min='1'
-                onChange={handleChange}
+            <StyledInput
+              type="number"
+              name="quantity"
+              placeholder="1"
+              min="1"
+              onChange={handleChange}
             />
             <label>Item Description</label>
-            <textarea 
-                name='description'
-                placeholder='Add a description'
-                onChange={handleChange}
+            <StyledTextArea
+              name="description"
+              placeholder="Add a description"
+              onChange={handleChange}
             />
             <label>Upload an Image</label>
-            <input 
-                name='image'
-                id='image'
-                type='file'
-                onChange={handleChange}
+            <StyledPhotoInput
+              name="image"
+              id="image"
+              type="file"
+              onChange={handleChange}
             />
-            <button type='submit'>Add Listing</button>
-        </form>
+            <div className="flex-row flex-end">
+              <button type="submit">Add Listing</button>
+            </div>
+          </StyledForm>
+        </WhiteBackground>
       </div>
-    );
+    </SellBackground>
+  );
 };
 
 export default SellItem;
