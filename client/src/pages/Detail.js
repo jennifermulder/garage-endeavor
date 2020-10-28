@@ -13,7 +13,7 @@ import {
 import { idbPromise } from "../utils/helpers";
 // import { idbPromise } from "../../utils/helpers";
 import spinner from '../assets/spinner.gif'
-
+import SimilarProductList from "../components/SimilarProductList";
 import Cart from '../components/Cart';
 
 function Detail() {
@@ -96,6 +96,7 @@ function Detail() {
     }
   }, [products, data, loading, dispatch, id]);
 
+  //product.find(p => p.tag === currentProduct.tag)
   return (
     <>
       {currentProduct ? (
@@ -129,7 +130,16 @@ function Detail() {
             src={`/images/${currentProduct.image}`}
             alt={currentProduct.name}
           />
+
+          <h3>Similar Items:</h3>
+          <SimilarProductList />
+          
         </div>
+
+        
+
+
+
       ) : null}
       {
         loading ? <img src={spinner} alt="loading" /> : null

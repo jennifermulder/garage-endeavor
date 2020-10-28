@@ -8,11 +8,11 @@ import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 import spinner from "../../assets/spinner.gif"
 
-function ProductList() {
+function SimilarProductList() {
 //immediately execute to retrieve current global state object, dispatch to update state  
 const [state, dispatch] = useStoreContext();
 //products are being retrieved from the state object
-const { currentCategory } = state;
+const { currentProduct } = state;
 
 const { loading, data } = useQuery(QUERY_PRODUCTS);
 //when product data from the useQuery() Hook's response to the global state object is saved with the dispatch() method, we also save each file to the products object store in IndexedDB using the idbPromise() function
@@ -43,11 +43,11 @@ useEffect(() => {
 }, [data, loading, dispatch]);
 
 function filterProducts() {
-  if (!currentCategory) {
+  if (!currentProduct) {
     return state.products;
   }
   
-  return state.products.filter(product => product.category._id === currentCategory);
+  return state.products.filter(product => product.tag === currentProduct.tag);
 }
 
   return (
@@ -75,4 +75,4 @@ function filterProducts() {
   );
 }
 
-export default ProductList;
+export default SimilarProductList;
