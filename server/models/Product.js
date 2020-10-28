@@ -12,7 +12,7 @@ const productSchema = new Schema({
     type: String
   },
   tag: {
-    type: String
+    type: [String]
   },
   image: {
     type: String

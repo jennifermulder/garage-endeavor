@@ -93,7 +93,7 @@ const SellItem = () => {
     const [ addProduct, {error} ] = useMutation(ADD_PRODUCT);
     // const [ uploadImage ] = useMutation(UPLOAD_IMAGE);
     let defaultCategory = '';
-    const [formState, setFormState] = useState({ name: '', category: '', quantity: '', price: '', description: '', tag: '', image: '', user: Auth.getProfile().data._id });
+    const [formState, setFormState] = useState({ name: '', category: '', quantity: '', price: '', description: '', tag: [], image: '', user: Auth.getProfile().data._id });
     const { data, loading } = useQuery(QUERY_PRODUCTS);
     categories = categories.slice(0, 5);
 
@@ -165,8 +165,12 @@ const SellItem = () => {
     const handleChange = event => {
         let { name, value } = event.target;
         if(name === 'image') {
-            value = document.querySelector('#image').files[0];
+          value = document.querySelector('#image').files[0];
         }
+        else if(name === 'tag') {
+          value = value.split(', ');
+        }
+        
         setFormState({
           ...formState,
           [name]: value
