@@ -36,6 +36,12 @@ const typeDefs = gql`
     user: User
   }
 
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+  }
+
   type Query {
     categories: [Category]
     products(category: ID, name: String): [Product]
@@ -51,7 +57,7 @@ const typeDefs = gql`
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
-    addProduct(name: String!, description: String, image: String, quantity: Int, category: ID!, price: Float!, user: ID!): Product
+    addProduct(name: String!, description: String, image: Upload, quantity: Int, category: ID!, price: Float!, user: ID!): Product
   }
 
   type Checkout {
