@@ -96,7 +96,7 @@ function Detail() {
     }
   }, [products, data, loading, dispatch, id]);
 
-  //product.find(p => p.tag === currentProduct.tag)
+
   return (
     <>
       {currentProduct ? (
