@@ -37,6 +37,12 @@ const typeDefs = gql`
     user: User
   }
 
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+  }
+
   type Query {
     categories: [Category]
     products(category: ID, name: String): [Product]

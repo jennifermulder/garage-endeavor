@@ -11,6 +11,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: "Comfortaa";
 }
 
 html,
@@ -81,6 +82,11 @@ a:hover {
 
 header {
   background: var(--primary);
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 header a {
@@ -99,9 +105,9 @@ button {
   background-color: var(--secondary);
 }
 
-button:hover {
+/* button:hover {
   opacity: .8;
-}
+} */
 
 button[disabled] {
   cursor: default;
@@ -210,5 +216,16 @@ input:focus {
 }
 
 .garage div:hover {
+  background-position: 0 -515px !important;
+}
+/* probably move this to the component folder css */
+.make-button-visible {
+  z-index: 4 !important;
+  opacity: 1 !important;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+.make-garage-door-stay-up {
   background-position: 0 -515px !important;
 }
