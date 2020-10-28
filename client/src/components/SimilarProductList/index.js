@@ -6,15 +6,13 @@ import { QUERY_PRODUCTS } from "../../utils/queries";
 import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
-import Auth from '../../utils/auth';
 import spinner from "../../assets/spinner.gif"
 
-function UserProductList() {
-// //immediately execute to retrieve current global state object, dispatch to update state  
+function SimilarProductList() {
+//immediately execute to retrieve current global state object, dispatch to update state  
 const [state, dispatch] = useStoreContext();
-const {products} = state;
-// //products are being retrieved from the state object
-// const { currentCategory } = state;
+//products are being retrieved from the state object
+const { currentProduct } = state;
 
 const { loading, data } = useQuery(QUERY_PRODUCTS);
 //when product data from the useQuery() Hook's response to the global state object is saved with the dispatch() method, we also save each file to the products object store in IndexedDB using the idbPromise() function
@@ -44,20 +42,19 @@ useEffect(() => {
   }
 }, [data, loading, dispatch]);
 
-function filterProducts(products) {
-  console.log({products})
-  if (!products) {
-    return products;
+function filterProducts() {
+  if (!currentProduct) {
+    return state.products;
   }
-
-  return products.filter(product => product.user._id === Auth.getProfile().data._id);
+  
+  return state.products.filter(product => product.tag === currentProduct.tag);
 }
 
   return (
     <div className="my-2">
-      {products.length ? (
+      {state.products.length ? (
         <div className="flex-row">
-            {filterProducts(products).map(product => (
+            {filterProducts().map(product => (
                 <ProductItem
                   key= {product._id}
                   _id={product._id}
@@ -77,4 +74,4 @@ function filterProducts(products) {
   );
 }
 
-export default UserProductList;
+export default SimilarProductList;

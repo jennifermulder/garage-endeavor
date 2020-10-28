@@ -52,7 +52,7 @@ function filterProducts() {
 
   return (
     <div className="my-2">
-      <h2>Our Products:</h2>
+      <h2>Great Finds:</h2>
       {state.products.length ? (
         <div className="flex-row">
             {filterProducts().map(product => (
@@ -67,7 +67,7 @@ function filterProducts() {
             )).reverse()}
         </div>
       ) : (
-        <h3>You haven't added any products yet!</h3>
+        <h3>You haven't added anything for sale yet!</h3>
       )}
       { loading ? 
       <img src={spinner} alt="loading" />: null}
