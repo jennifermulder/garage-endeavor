@@ -53,12 +53,6 @@ const Stylediv = styled.div`
   align-items: center;
 `;
 
-// const Tradediv = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// `;
-
 const Buttondiv = styled.section`
   margin-top: 33%;
 `;
@@ -107,10 +101,6 @@ const Home = () => {
               onMouseEnter={() => makeButtonsZedIndexGoUp()}>Buy</Button>
               <Button to="/sell-item" className={buttonClass}
               onMouseEnter={() => makeButtonsZedIndexGoUp()}>Sell</Button>
-              {/* <Tradediv>
-                <Button to="/trade" className={buttonClass}
-              onMouseEnter={() => makeButtonsZedIndexGoUp()}>Trade</Button>
-              </Tradediv> */}
             </Buttondiv>
 
             <GarageDoorDiv
