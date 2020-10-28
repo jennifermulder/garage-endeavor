@@ -57,7 +57,6 @@ function UserProfile() {
       <div className="container my-1">
         <WhiteBackground>
           <Link to="/buy">← Back to Items</Link>
-
           {user ? (
             <>
               <h1>
