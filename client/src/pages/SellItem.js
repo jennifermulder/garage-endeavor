@@ -16,7 +16,7 @@ const SellItem = () => {
     const [ addProduct, {error} ] = useMutation(ADD_PRODUCT);
     // const [ uploadImage ] = useMutation(UPLOAD_IMAGE);
     let defaultCategory = '';
-    const [formState, setFormState] = useState({ name: '', category: '', quantity: '', price: '', description: '', image: '', user: Auth.getProfile().data._id });
+    const [formState, setFormState] = useState({ name: '', category: '', quantity: '', price: '', description: '', tag: '', image: '', user: Auth.getProfile().data._id });
     const { data, loading } = useQuery(QUERY_PRODUCTS);
     categories = categories.slice(0, 5);
 
@@ -55,6 +55,7 @@ const SellItem = () => {
                     variables: {
                       name: formState.name, 
                       description: formState.description,
+                      tag: formState.tag,
                       quantity: parseInt(formState.quantity),
                       image: img,
                       price: parseInt(formState.price),
@@ -136,6 +137,12 @@ const SellItem = () => {
             <textarea 
                 name='description'
                 placeholder='Add a description'
+                onChange={handleChange}
+            />
+            <label>Item Tag</label>
+            <textarea 
+                name='tag'
+                placeholder='Add a tag'
                 onChange={handleChange}
             />
             <label>Upload an Image</label>

@@ -36,12 +36,13 @@ function UserProfile() {
         <Link to="/buy">
           ← Back to Items
           </Link>
-
+      
         {user ? (
           <>
             <h1>{user.firstName} {user.lastName}</h1>
+          
             <br />
-            <h2>Posted Products</h2>
+            <h2>Posted for Sale</h2>
             <UserProductList />
             <br />  
             <h2>Order History</h2>
