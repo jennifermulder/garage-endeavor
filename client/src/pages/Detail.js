@@ -133,7 +133,7 @@ function Detail() {
           />
 
           <h3>Similar Items:</h3>
-          <SimilarProductList />
+          <SimilarProductList currentProduct={currentProduct}/>
           
         </div>
 
