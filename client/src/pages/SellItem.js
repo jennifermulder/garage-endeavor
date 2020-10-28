@@ -14,8 +14,6 @@ const SellItem = () => {
     let { categories } = state;
     // console.log({state})
     const [ addProduct, {error} ] = useMutation(ADD_PRODUCT);
-    // const [ uploadImage ] = useMutation(UPLOAD_IMAGE);
-    let defaultCategory = '';
     const [formState, setFormState] = useState({ name: '', category: '', quantity: '', price: '', description: '', image: '', user: Auth.getProfile().data._id });
     const { data, loading } = useQuery(QUERY_PRODUCTS);
     categories = categories.slice(0, 5);
@@ -50,13 +48,12 @@ const SellItem = () => {
             console.log({formState})
 
             if (data) {
-                let img = '';
                 const newProduct = await addProduct({
                     variables: {
                       name: formState.name, 
                       description: formState.description,
                       quantity: parseInt(formState.quantity),
-                      image: img,
+                      image: formState.image,
                       price: parseInt(formState.price),
                       category: formState.category,
                       user: formState.user
