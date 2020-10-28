@@ -25,15 +25,6 @@ function Detail() {
   // passing the _id value of product selected to the useQuery() Hook and displaying the response to the page.
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
-  // const products = data?.products || [];
-
-  // useEffect(() => {
-  //   if (products.length) {
-  //     setCurrentProduct(products.find(product => product._id === id));
-  //   }
-  // }, [products, id]);
-
-
   const { products, cart } = state;
   //update global state, update in Indexeddb
   const addToCart = () => {
@@ -127,7 +118,7 @@ function Detail() {
           </p>
 
           <img
-            src={`/images/${currentProduct.image}`}
+            src={currentProduct.image}
             alt={currentProduct.name}
           />
 
