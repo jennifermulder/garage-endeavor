@@ -45,7 +45,6 @@ useEffect(() => {
 }, [data, loading, dispatch]);
 
 function filterProducts(products) {
-  //????
   console.log({products})
   if (!products) {
     return products;
@@ -56,7 +55,6 @@ function filterProducts(products) {
 
   return (
     <div className="my-2">
-      <h2>Our Products:</h2>
       {products.length ? (
         <div className="flex-row">
             {filterProducts(products).map(product => (

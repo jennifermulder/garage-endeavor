@@ -20,6 +20,7 @@ export const ADD_ORDER = gql`
         _id
         name
         description
+        tag
         price
         quantity
         category {
@@ -43,11 +44,12 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_PRODUCT = gql`
-  mutation addProduct($name: String!, $description: String, $image: Upload, $price: Float!, $quantity: Int, $category: ID!, $user: ID!) {
-    addProduct(name: $name, description: $description, image: $image, price: $price, quantity: $quantity, category: $category, user: $user) {
+  mutation addProduct($name: String!, $description: String, $tag: String, $image: String, $price: Float!, $quantity: Int, $category: ID!, $user: ID!) {
+    addProduct(name: $name, description: $description, tag: $tag, image: $image, price: $price, quantity: $quantity, category: $category, user: $user) {
         _id
       name
       description
+      tag
       price
       quantity
       category {
