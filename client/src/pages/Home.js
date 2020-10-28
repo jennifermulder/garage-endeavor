@@ -4,6 +4,7 @@ import openGarage from "../assets/images/open-garage-door.png";
 import garageDoor from "../assets/images/garage-door.png";
 import garageSign from "../assets/images/garage-sale-sign.gif";
 import { Link } from "react-router-dom";
+import Auth from "../utils/auth";
 
 const StyledHomeBackground = styled.div`
   display: flex;
@@ -100,8 +101,13 @@ const Home = () => {
             <Buttondiv href="#">
               <Button to="/buy" className={buttonClass} 
               onMouseEnter={() => makeButtonsZedIndexGoUp()}>Buy</Button>
-              <Button to="/sell-item" className={buttonClass}
-              onMouseEnter={() => makeButtonsZedIndexGoUp()}>Sell</Button>
+              { Auth.loggedIn() ?
+                <Button to="/sell-item" className={buttonClass}
+                onMouseEnter={() => makeButtonsZedIndexGoUp()}>Sell</Button>
+                :
+                <Button to="/login" className={buttonClass}
+                onMouseEnter={() => makeButtonsZedIndexGoUp()}>Login</Button>
+              }
             </Buttondiv>
 
             <GarageDoorDiv

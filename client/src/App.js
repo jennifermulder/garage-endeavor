@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider } from '@apollo/react-hooks';
-import ApolloClient from 'apollo-boost';
+import ApolloClient from 'apollo-boost-upload';
 
 import Home from "./pages/Home";
 import Buy from "./pages/Buy";
@@ -14,6 +14,7 @@ import Success from "./pages/Success";
 import SellItem from "./pages/SellItem";
 import { StoreProvider } from "./utils/GlobalState";
 import UserProfile from "./pages/UserProfile";
+import Redirect from './pages/Redirect';
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -45,6 +46,7 @@ function App() {
               <Route exact path="/user" component={UserProfile} />
               <Route exact path="/products/:id" component={Detail} />
               <Route exact path="/success" component={Success} />
+              <Route exact path="/redirect" component={Redirect} />
               <Route exact path="/sell-item" component={SellItem} />
               <Route component={NoMatch} />
             </Switch>

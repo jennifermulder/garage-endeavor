@@ -11,8 +11,12 @@ const productSchema = new Schema({
   description: {
     type: String
   },
-  image: {
+  tag: {
     type: String
+  },
+  image: {
+    type: String,
+    required: true
   },
   price: {
     type: Number,

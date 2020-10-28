@@ -37,27 +37,11 @@ function UserProfile() {
     user = data.user;
   }
 
-  // data.products.filter(product => product.user._id == Auth.getProfile().data._id)
-  ///posts, post, postDate
-  //filter for products.seller, display products
-  //create userproduct list and pass that component into the use profile page??
-
-  // return state.products.filter(product => product.seller?._id === seller Id???);
-  //need to be able to pass id Auth.token?
-
-  // if (req.headers.authorization) {
-  //   token = token
-  //     .split(' ')
-  //     .pop()
-  //     .trim();
-
-  // }
   return (
     <UserBackground>
       <div className="container my-1">
         <WhiteBackground>
           <Link to="/buy">← Back to Items</Link>
-
           {user ? (
             <>
               <h1>

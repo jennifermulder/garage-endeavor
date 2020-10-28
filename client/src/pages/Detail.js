@@ -13,6 +13,7 @@ import {
 import { idbPromise } from "../utils/helpers";
 // import { idbPromise } from "../../utils/helpers";
 import spinner from '../assets/spinner.gif'
+import SimilarProductList from "../components/SimilarProductList";
 import Cart from '../components/Cart';
 import styled from "styled-components";
 
@@ -33,15 +34,6 @@ function Detail() {
   const [currentProduct, setCurrentProduct] = useState({})
   // passing the _id value of product selected to the useQuery() Hook and displaying the response to the page.
   const { loading, data } = useQuery(QUERY_PRODUCTS);
-
-  // const products = data?.products || [];
-
-  // useEffect(() => {
-  //   if (products.length) {
-  //     setCurrentProduct(products.find(product => product._id === id));
-  //   }
-  // }, [products, id]);
-
 
   const { products, cart } = state;
   //update global state, update in Indexeddb
@@ -105,6 +97,7 @@ function Detail() {
     }
   }, [products, data, loading, dispatch, id]);
 
+
   return (
     <StyledDiv>
       {currentProduct ? (
@@ -135,10 +128,19 @@ function Detail() {
           </p>
 
           <img
-            src={`/images/${currentProduct.image}`}
+            src={currentProduct.image}
             alt={currentProduct.name}
           />
+
+          <h3>Similar Items:</h3>
+          <SimilarProductList />
+          
         </div>
+
+        
+
+
+
       ) : null}
       {
         loading ? <img src={spinner} alt="loading" /> : null

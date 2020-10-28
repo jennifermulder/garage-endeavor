@@ -84,107 +84,106 @@ const StyledPhotoInput = styled.input`
   box-sizing: border-box;
 ;`
 
+const Error = styled.span`
+  display: none;
+  color: red;
+`;
+
 const SellItem = () => {
   const [state, dispatch] = useStoreContext();
   const { data: categoryData } = useQuery(QUERY_CATEGORIES);
-  // console.log({data})
-  let { categories } = state;
-  // console.log({state})
-  const [addProduct, { error }] = useMutation(ADD_PRODUCT);
-  // const [ uploadImage ] = useMutation(UPLOAD_IMAGE);
-  let defaultCategory = "";
-  const [formState, setFormState] = useState({
-    name: "",
-    category: "",
-    quantity: "",
-    price: "",
-    description: "",
-    image: "",
-    user: Auth.getProfile().data._id,
-  });
+  const [ addProduct, {error} ] = useMutation(ADD_PRODUCT);
   const { data, loading } = useQuery(QUERY_PRODUCTS);
+  
+  let userID = '';
+  if(Auth.loggedIn()) {
+    userID = Auth.getProfile().data._id;
+  }
+
+  const [formState, setFormState] = useState({ name: '', category: '', quantity: '', price: '', description: '', tag: '', image: '', user: userID });
+  let { categories } = state;
   categories = categories.slice(0, 5);
 
   useEffect(() => {
     // if categoryData exists or has changed from the response of useQuery, then run dispatch()
     if (categoryData) {
       dispatch({
-        type: UPDATE_CATEGORIES,
-        categories: categoryData.categories,
+          type: UPDATE_CATEGORIES,
+          categories: categoryData.categories
       });
       //save to idb store
-      categoryData.categories.forEach((category) => {
-        idbPromise("categories", "put", category);
+      categoryData.categories.forEach(category => {
+          idbPromise('categories', 'put', category);
       });
-    } else if (!loading) {
-      idbPromise("categories", "get").then((categories) => {
-        dispatch({
+    }
+    else if (!loading) {
+      idbPromise('categories', 'get').then(categories => {
+          dispatch({
           type: UPDATE_CATEGORIES,
-          categories: categories,
-        });
+          categories: categories
+          });
       });
     }
   }, [categoryData, loading, dispatch]);
 
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async event => {
     event.preventDefault();
-    // console.log('handle submit', formState);
 
-    if (
-      formState.name &&
-      formState.price &&
-      formState.category &&
-      formState.user
-    ) {
-      console.log({ formState });
-
+    if(formState.name && !isNaN(parseInt(formState.price)) && formState.category && formState.user && formState.image) {
       if (data) {
-        let img = "";
         const newProduct = await addProduct({
           variables: {
-            name: formState.name,
+            name: formState.name, 
             description: formState.description,
+            tag: formState.tag,
             quantity: parseInt(formState.quantity),
-            image: img,
+            image: formState.image,
             price: parseInt(formState.price),
             category: formState.category,
-            user: formState.user,
-          },
-        });
-        console.log({ newProduct });
+            user: formState.user
+          }
+        }); 
+        
         dispatch({
           type: UPDATE_PRODUCTS,
-          products: [...data.products, newProduct],
+          products: [...data.products, newProduct]
         });
+    
+        idbPromise('products', 'put', newProduct.data.addProduct);
 
-        idbPromise("products", "put", newProduct.data.addProduct);
-      } else if (!loading) {
-        idbPromise("products", "get").then((products) => {
+        if(newProduct.data.addProduct.name) {
+          window.location.assign(`/redirect?${newProduct.data.addProduct.name}`);
+        }
+      } 
+      else if (!loading) {
+        idbPromise('products', 'get').then((products) => {
           dispatch({
             type: UPDATE_PRODUCTS,
-            products: products,
+            products: products
           });
         });
       }
-    } else {
-      //console.log("error");
-      // TODO: error handling for required fields
+    }
+    else {
+      document.getElementById('error-msg').style.display = 'block';
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     let { name, value } = event.target;
-    if (name === "image") {
-      value = document.querySelector("#image").files[0];
+    if(name === 'image') {
+      value = document.querySelector('#image').files[0];
     }
+    
     setFormState({
       ...formState,
-      [name]: value,
+      [name]: value
     });
   };
 
   return (
     <SellBackground>
+      { Auth.loggedIn() ?
       <div className="container">
         <WhiteBackground>
           <h1>Add a Listing</h1>
@@ -204,7 +203,6 @@ const SellItem = () => {
               <option value="" hidden>
                 Choose a category...
               </option>
-              {/* TODO: add a filter helper function to filter out duplicates */}
               {categories.map((category) => (
                 <option value={category._id}>{category.name}</option>
               ))}
@@ -229,6 +227,12 @@ const SellItem = () => {
               placeholder="Add a description"
               onChange={handleChange}
             />
+            <label>Item Tag</label>
+            <StyledTextArea 
+                name='tag'
+                placeholder='Add a tag'
+                onChange={handleChange}
+            />
             <label>Upload an Image</label>
             <StyledPhotoInput
               name="image"
@@ -236,12 +240,21 @@ const SellItem = () => {
               type="file"
               onChange={handleChange}
             />
+            <Error id='error-msg'>*Either a required field is missing or information has been inputted incorrectly.  Please review your information.</Error>
             <div className="flex-row flex-end">
               <button type="submit">Add Listing</button>
             </div>
           </StyledForm>
         </WhiteBackground>
       </div>
+      :
+      <WhiteBackground>
+        <div>
+          <h2>You must be logged in to add a listing.</h2>
+          <a href='login'>Login</a>
+        </div>
+      </WhiteBackground>
+    }
     </SellBackground>
   );
 };
