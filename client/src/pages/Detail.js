@@ -13,8 +13,17 @@ import {
 import { idbPromise } from "../utils/helpers";
 // import { idbPromise } from "../../utils/helpers";
 import spinner from '../assets/spinner.gif'
-
 import Cart from '../components/Cart';
+import styled from "styled-components";
+
+const FormatButton = styled.button`
+  background-color: lightpink;
+  color: black;
+;`
+
+const StyledDiv = styled.div`
+ padding-top: 60px;
+;`
 
 function Detail() {
   const [state, dispatch] = useStoreContext();
@@ -97,7 +106,7 @@ function Detail() {
   }, [products, data, loading, dispatch, id]);
 
   return (
-    <>
+    <StyledDiv>
       {currentProduct ? (
         <div className="container my-1">
           <Link to="/">
@@ -114,15 +123,15 @@ function Detail() {
             <strong>Price:</strong>
             ${currentProduct.price}
             {" "}
-            <button onClick={addToCart}>
+            <FormatButton onClick={addToCart}>
               Add to Cart
-            </button>
-            <button
+            </FormatButton>
+            <FormatButton
               disabled={!cart.find(p => p._id === currentProduct._id)}
               onClick={removeFromCart}
             >
               Remove from Cart
-            </button>
+            </FormatButton>
           </p>
 
           <img
@@ -135,7 +144,7 @@ function Detail() {
         loading ? <img src={spinner} alt="loading" /> : null
       }
       <Cart />
-    </>
+    </StyledDiv>
   );
 };
 

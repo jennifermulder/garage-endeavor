@@ -37,6 +37,7 @@ const GarageDoorDiv = styled.div`
 `;
 
 const GarageSign = styled.section`
+  transform: rotate(60deg);
   background-image: url(${garageSign});
   background-size: 100% 100%;
   height: 17vh;

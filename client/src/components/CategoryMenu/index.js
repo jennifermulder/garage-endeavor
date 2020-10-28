@@ -5,6 +5,15 @@ import { QUERY_CATEGORIES } from "../../utils/queries";
 import { useStoreContext } from "../../utils/GlobalState";
 import { idbPromise } from '../../utils/helpers';
 
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  margin: 3px;
+  background-color: lightpink;
+  color: black;
+;`
+
+
 function CategoryMenu() {
   // const { data: categoryData } = useQuery(QUERY_CATEGORIES);
   // const categories = categoryData?.categories || [];
@@ -51,14 +60,14 @@ function CategoryMenu() {
     <div>
       <h2>Choose a Category:</h2>
       {categories.map(item => (
-        <button
+        <StyledButton
           key={item._id}
           onClick={() => {
             handleClick(item._id);
           }}
         >
           {item.name}
-        </button>
+        </StyledButton>
       ))}
     </div>
   );

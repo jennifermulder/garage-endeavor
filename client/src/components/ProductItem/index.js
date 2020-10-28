@@ -1,18 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { idbPromise, pluralize } from "../../utils/helpers"
+import { idbPromise, pluralize } from "../../utils/helpers";
 
-import { useStoreContext } from '../../utils/GlobalState';
-import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
+import { useStoreContext } from "../../utils/GlobalState";
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
+
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  margin: 3px;
+  background-color: lightpink;
+  color: black; ;
+`;
+
+const WhiteBackground = styled.div`
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  color: black;
+  align-items: center;
+  justify-content: center;
+  margin: 0 4% 3%;
+  padding: 2%;
+`;
 
 function ProductItem(item) {
-  const {
-    image,
-    name,
-    _id,
-    price,
-    quantity
-  } = item;
+  const { image, name, _id, price, quantity } = item;
 
   const [state, dispatch] = useStoreContext();
   // destructure cart from state so that it can be used
@@ -27,36 +40,35 @@ function ProductItem(item) {
       dispatch({
         type: UPDATE_CART_QUANTITY,
         _id: _id,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
       });
-      idbPromise('cart', 'put', {
+      idbPromise("cart", "put", {
         ...itemInCart,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
       });
     } else {
       dispatch({
         type: ADD_TO_CART,
-        product: { ...item, purchaseQuantity: 1 }
+        product: { ...item, purchaseQuantity: 1 },
       });
-      idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
+      idbPromise("cart", "put", { ...item, purchaseQuantity: 1 });
     }
   };
 
   return (
-    <div className="card px-1 py-1">
+    <WhiteBackground className="card px-1 py-1">
       <Link to={`/products/${_id}`}>
-        <img
-          alt={name}
-          src={`/images/${image}`}
-        />
         <p>{name}</p>
+        <img alt={name} src={`/images/${image}`} />
       </Link>
       <div>
-        <div>{quantity} {pluralize("item", quantity)} in stock</div>
         <span>${price}</span>
+        <div>
+          {quantity} {pluralize("item", quantity)} in stock
+        </div>
       </div>
-      <button onClick={addToCart}>Add to cart</button>
-    </div>
+      <StyledButton onClick={addToCart}>Add to cart</StyledButton>
+    </WhiteBackground>
   );
 }
 
