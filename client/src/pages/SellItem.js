@@ -121,7 +121,6 @@ const SellItem = () => {
 
     const handleFormSubmit = async event => {
         event.preventDefault();
-        // console.log('handle submit', formState);
 
         if(formState.name && formState.price && formState.category && formState.user) {
             console.log({formState})
@@ -146,6 +145,10 @@ const SellItem = () => {
                 });
             
                 idbPromise('products', 'put', newProduct.data.addProduct);
+
+                if(newProduct.data.addProduct.name) {
+                  window.location.assign(`/redirect?${newProduct.data.addProduct.name}`);
+                }
             } 
             else if (!loading) {
                 idbPromise('products', 'get').then((products) => {
