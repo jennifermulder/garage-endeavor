@@ -165,8 +165,9 @@ const SellItem = () => {
     const handleChange = event => {
         let { name, value } = event.target;
         if(name === 'image') {
-            value = document.querySelector('#image').files[0];
+          value = document.querySelector('#image').files[0];
         }
+        
         setFormState({
           ...formState,
           [name]: value

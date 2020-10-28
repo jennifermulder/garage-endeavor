@@ -64,7 +64,7 @@ function filterProducts() {
                   price={product.price}
                   quantity={product.quantity}
                 />
-            ))}
+            )).reverse()}
         </div>
       ) : (
         <h3>You haven't added anything for sale yet!</h3>
