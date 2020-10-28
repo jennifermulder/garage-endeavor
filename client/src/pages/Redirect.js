@@ -4,9 +4,10 @@ function Redirect() {
     const listingName = () => {
         let url = window.location.href;
         url = url.slice(url.indexOf('?') + 1).replace(/%20/g, ' ');
-        // console.log(url);
         return url;
     };
+
+    // setTimeout(function(){ window.location.assign('buy') }, 3000);
 
     return (
         <div>

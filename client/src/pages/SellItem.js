@@ -92,8 +92,11 @@ const SellItem = () => {
     // console.log({state})
     const [ addProduct, {error} ] = useMutation(ADD_PRODUCT);
     // const [ uploadImage ] = useMutation(UPLOAD_IMAGE);
-    let defaultCategory = '';
-    const [formState, setFormState] = useState({ name: '', category: '', quantity: '', price: '', description: '', tag: '', image: '', user: Auth.getProfile().data._id });
+    let userID = '';
+    if(Auth.loggedIn()) {
+      userID = Auth.getProfile().data._id;
+    }
+    const [formState, setFormState] = useState({ name: '', category: '', quantity: '', price: '', description: '', tag: '', image: '', user: userID });
     const { data, loading } = useQuery(QUERY_PRODUCTS);
     categories = categories.slice(0, 5);
 
@@ -179,6 +182,7 @@ const SellItem = () => {
 
   return (
     <SellBackground>
+      { Auth.loggedIn() ?
       <div className="container">
         <WhiteBackground>
           <h1>Add a Listing</h1>
@@ -242,6 +246,14 @@ const SellItem = () => {
           </StyledForm>
         </WhiteBackground>
       </div>
+      :
+      <WhiteBackground>
+        <div>
+          <h2>You must be logged in to add a listing.</h2>
+          <a href='login'>Login</a>
+        </div>
+      </WhiteBackground>
+    }
     </SellBackground>
   );
 };
