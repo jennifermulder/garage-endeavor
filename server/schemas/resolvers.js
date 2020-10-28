@@ -165,20 +165,6 @@ const resolvers = {
         return product;
       }
       throw new AuthenticationError('You need to be logged in!');
-    },
-    singleUploadStream: async (parent, args) => {
-      const file = await args.image
-      console.log('file', {file})
-      const {createReadStream, filename, mimetype, encoding} = file
-      const fileStream = createReadStream()
-
-      const uploadParams = {Bucket: 'garageendeavor', Key: filename, Body: fileStream};
-      const result = await s3.upload(uploadParams).promise()
-
-      console.log('result', {result})
-
-
-      return {filename, mimetype, encoding};
     }
   }
 };
