@@ -3,10 +3,32 @@ import React, { useState } from "react";
 import styled from "styled-components"
 import signupPattern from "../assets/images/signup-background.jpg"
 
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
 import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
+
+const StyledSignupBackground = styled.div`
+background-image: url(${signupPattern});
+position: fixed;
+height: 100vh;
+width: 100vw;
+background-position: center;
+background-size: 35%;
+display: flex;
+justify-content: center;
+align-items: center;
+;`
+
+const WhiteBackground = styled.div`
+background-color: white; /* Black w/opacity/see-through */
+border: 2px solid black;
+border-radius: 10px;
+color: black;
+z-index: 2;
+width: 80%;
+padding: 20px;
+;`
 
 function Signup(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -32,37 +54,13 @@ function Signup(props) {
     });
   };
 
-  const StyledSignupBackground = styled.div`
-    background-image: url(${signupPattern});
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    background-position: center;
-    background-size: 35%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  ;`
-
-  const WhiteBackground = styled.div`
-    background-color: white; /* Black w/opacity/see-through */
-    border: 2px solid black;
-    border-radius: 10px;
-    color: black;
-    z-index: 2;
-    width: 80%;
-    padding: 20px;
-  ;`
-
   return (
     <StyledSignupBackground>
       <div className="container my-1">
-        {/* <WhiteBackground>
-          <Link to="/signup">
-            ← Go to Signup
-          </Link>
-        </WhiteBackground> */}
         <WhiteBackground> 
+          <Link to="/login">
+            ← Go to Login
+          </Link>
           <h2>Signup</h2>
           <form onSubmit={handleFormSubmit}>
             <div className="flex-row space-between my-2">
