@@ -209,18 +209,24 @@ input:focus {
   color: var(--error);
 }
 
-@media screen and (max-width: 768px) {
-  .card {
-    width: 100%;
-  }
-}
-
 .changing-size-profile-logout {
   padding-left: 98px;
 }
 
 .changing-size-signup-login {
   padding-left: 146px;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+  .footer-media-adj {
+    flex-direction: column !important;
+  }
+  .footer-flex-adj {
+    width: 60% !important;
+  }
 }
 
 @media (max-width: 588px) {
@@ -237,9 +243,6 @@ input:focus {
   .media-cart-adjustment {
     margin: -2vh 0.5vh 0 0 !important;
   }
-  /* .media-cart-placement-adjustment {
-    padding: 312px 0 0 0 !important;
-  } */
 }
 
 .garage div:hover {

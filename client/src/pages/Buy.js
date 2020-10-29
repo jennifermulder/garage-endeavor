@@ -7,8 +7,6 @@ import Cart from "../components/Cart";
 
 const BuyBackground = styled.div`
   background-image: url(${buyPattern});
-  // height: 100vh;
-  // width: 100vw;
   background-size: 400px;
   display: flex;
 `;

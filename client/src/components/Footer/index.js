@@ -1,71 +1,103 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const StyledButton = styled.button`
-  margin: 3px;
-  background-color: lightpink;
-  color: black;
-`;
-
 const StyledFooter = styled.footer`
-
+  justify-content: center;
+  align-items: center;
 `;
 
-const WhiteBackground = styled.div``;
+const StyledFlexDiv = styled.div`
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: space-around;
+  text-align: center;
+`;
+
+const StyledHrSH = styled.hr`
+  width: 70px;
+`;
+
+const StyledHrJM = styled.hr`
+  width: 135px;
+`;
+
+const StyledHrSI = styled.hr`
+  width: 100px;
+`;
+
+const StyledP = styled.p`
+  font-weight: bold;
+  font-variant: small-caps;
+  margin: 10px 0 5px 0;
+`;
+
+const StyledFlexItem = styled.div`
+  width: 25%;
+`;
+
+const StyledCopyright = styled.div`
+  text-align: right;
+  font-size: 3em !important;
+`;
 
 function Footer() {
   return (
     <StyledFooter className="site-footer">
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-12 col-md-6">
+        <StyledFlexDiv className="container footer-media-adj">
+          <StyledFlexItem className="footer-flex-adj">
             <h6>About</h6>
-            <p className="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative  to help the upcoming programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code wants to be simple. We will help programmers build up concepts in different programming languages that include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
-          </div>
-
-          <div className="col-xs-6 col-md-3">
-            <h6>Categories</h6>
-            <ul className="footer-links">
-              <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-              <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
-              <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
-              <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
-              <li><a href="http://scanfcode.com/category/android/">Android</a></li>
-              <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
-            </ul>
-          </div>
-
-          <div className="col-xs-6 col-md-3">
-            <h6>Quick Links</h6>
-            <ul className="footer-links">
-              <li><a href="http://scanfcode.com/about/">About Us</a></li>
-              <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-              <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-              <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
-              <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-8 col-sm-6 col-xs-12">
-            <p className="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
-         <a href="#">Scanfcode</a>.
+              <hr/>
+            <p className="text-center">
+              Here at Garage Collage, we are trying to help the lives of people
+              in the COVID-19 pandemic by allowing them to safely and
+              effectively host a garage sale over our platform. Whether you're
+              trying to make money off of bulk things that you may not need, or
+              you're looking to purchase some things at a possibly lower retail
+              price or find something antique, Garage Collage is the place for
+              you!
             </p>
-          </div>
+          </StyledFlexItem>
 
-          <div className="col-md-4 col-sm-6 col-xs-12">
-            <ul className="social-icons">
-              <li><a className="facebook" href="#"><i className="fa fa-facebook"></i></a></li>
-              <li><a className="twitter" href="#"><i className="fa fa-twitter"></i></a></li>
-              <li><a className="dribbble" href="#"><i className="fa fa-dribbble"></i></a></li>
-              <li><a className="linkedin" href="#"><i className="fa fa-linkedin"></i></a></li>   
+          <StyledFlexItem className="footer-flex-adj">
+            <h6>Who We Are</h6>
+              <hr/>
+            <ul className="footer-links">
+              <StyledP>Sara Hu</StyledP>
+              <StyledHrSH/>
+              <li><a href="https://www.linkedin.com/in/scot-itakura-289376157/">Linkedin</a></li>
+              <li><a href="https://github.com/shhu21">Github</a></li>
+
+              <StyledP>Jennifer Mulder</StyledP>
+              <StyledHrJM/>
+              <li><a href="https://www.linkedin.com/in/scot-itakura-289376157/">Linkedin</a></li>
+              <li><a href="https://github.com/jennifermulder">Github</a></li>
+
+              <StyledP>Scot Itakura</StyledP>
+              <StyledHrSI/>
+              <li><a href="https://www.linkedin.com/in/scot-itakura-289376157/">Linkedin</a></li>
+              <li><a href="https://github.com/scotitakura">Github</a></li>
             </ul>
-          </div>
-        </div>
-      </div>
+          </StyledFlexItem>
+
+          <StyledFlexItem className="footer-flex-adj">
+            <h6>Quick Links</h6>
+              <hr/>
+            <ul className="footer-links">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Contribute</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Sitemap</a></li>
+            </ul>
+          </StyledFlexItem>
+        </StyledFlexDiv>
+      <StyledCopyright>
+        <p className="container">
+          Copyright &copy; 2020 All Rights (Not Yet) Reserved
+        </p>
+      </StyledCopyright>
     </StyledFooter>
   );
 }

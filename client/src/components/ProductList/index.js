@@ -7,6 +7,18 @@ import { useStoreContext } from "../../utils/GlobalState";
 import { UPDATE_PRODUCTS } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 import spinner from "../../assets/spinner.gif";
+import styled from "styled-components";
+
+const WhiteBackground = styled.div`
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  color: black;
+  z-index: 2;
+  padding: 5px 5px 5px 10px;
+  margin-bottom: 18px;
+  width: 200px;
+`;
 
 function ProductList() {
   //immediately execute to retrieve current global state object, dispatch to update state
@@ -54,7 +66,9 @@ function ProductList() {
 
   return (
     <div className="my-2">
-      <h2>Great Finds:</h2>
+      <WhiteBackground>
+        <h2>Great Finds:</h2>
+      </WhiteBackground>
       {state.products.length ? (
         <div className="flex-row">
             {filterProducts().map(product => (

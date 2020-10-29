@@ -10,7 +10,6 @@ const StyledHomeBackground = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  // position: absolute;
   background-image: url(${openGarage});
   left: 0;
   right: 0;
@@ -48,7 +47,6 @@ const GarageSign = styled.section`
   width: 27vh;
   background-repeat: no-repeat;
   z-index: 2;
-  // margin-top: 21vh; 
   margin-top: -78vh !important;
 `;
 
@@ -60,7 +58,6 @@ const Stylediv = styled.div`
 `;
 
 const Buttondiv = styled.section`
-  // position: absolute;
   margin-top: -45vh;
 `;
 
