@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import openGarage from "../assets/images/open-garage-door.png";
-import garageDoor from "../assets/images/garage-door.png";
 import garageSign from "../assets/images/garage-sale-sign.gif";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
@@ -11,7 +9,7 @@ const StyledHomeBackground = styled.div`
   flex-direction: column;
   align-items: center;
   position: absolute;
-  background-image: url(${openGarage});
+  background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/open-garage-door.png');
   left: 0;
   right: 0;
   top: 0;
@@ -25,7 +23,7 @@ const StyledHomeBackground = styled.div`
 
 const GarageDoorDiv = styled.div`
   position: absolute;
-  background-image: url(${garageDoor});
+  background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/garage-door.png');
   background-size: 100% 100%;
   height: 33vh;
   width: 52vh;

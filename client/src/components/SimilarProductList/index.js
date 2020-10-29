@@ -6,7 +6,7 @@ import { QUERY_PRODUCTS } from "../../utils/queries";
 import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
-import spinner from "../../assets/spinner.gif"
+import spinner from "../../assets/images/spinner.gif"
 
 function SimilarProductList({currentProduct}) {
 //immediately execute to retrieve current global state object, dispatch to update state  

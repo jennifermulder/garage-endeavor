@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-
-import styled from "styled-components";
-import signupPattern from "../assets/images/signup-background.jpg";
-
+import styled from "styled-components"
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
 import { ADD_USER } from "../utils/mutations";
 
 const StyledSignupBackground = styled.div`
-  background-image: url(${signupPattern});
+  background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/signup-background.jpg');
   height: 100vh;
   background-size: 400px;
   display: flex;
