@@ -9,10 +9,25 @@ import { idbPromise } from "../../utils/helpers";
 import { QUERY_CHECKOUT } from "../../utils/queries";
 import { loadStripe } from "@stripe/stripe-js";
 import styled from "styled-components";
+import shoppingIcon from "../../assets/images/shoppingcart-icon.png";
 
 const CartDiv = styled.div`
-  padding-top: 100px;
+  margin: 50px 0 0 0;
 `;
+
+const IconDiv = styled.div`
+  position: fixed;
+  margin: 6vh 0.5vh 0 0;
+  background-color: transparent;
+  width: 12vh;
+  z-index: 2;
+`;
+
+const StyledButton = styled.button`
+  margin: 3px;
+  background-color: lightpink;
+  color: black;
+;`
 
 //use to perform checkout redirect
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
@@ -61,12 +76,10 @@ const Cart = () => {
 
   if (!state.cartOpen) {
     return (
-      <CartDiv>
-        <div className="cart-closed" onClick={toggleCart}>
-          <span role="img" aria-label="trash">
-            🛒
-          </span>
-        </div>
+      <CartDiv className="media-adjustment">
+        <IconDiv className="cart-closed media-cart-adjustment" onClick={toggleCart}>
+          <img src={shoppingIcon} />
+        </IconDiv>
       </CartDiv>
     );
   }
@@ -87,7 +100,7 @@ const Cart = () => {
 
   //toggle on cartOpen value when [close] text is clicked
   return (
-    <CartDiv className="cart">
+    <CartDiv className="cart media-cart-placement-adjustment">
       <div className="close" onClick={toggleCart}>
         [close]
       </div>
@@ -100,7 +113,7 @@ const Cart = () => {
           <div className="flex-row space-between">
             <strong>Total: ${calculateTotal()}</strong>
             {Auth.loggedIn() ? (
-              <button onClick={submitCheckout}>Checkout</button>
+              <StyledButton className="button-hover" onClick={submitCheckout}>Checkout</StyledButton>
             ) : (
               <span>(log in to check out)</span>
             )}

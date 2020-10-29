@@ -5,14 +5,13 @@ import CategoryMenu from "../components/CategoryMenu";
 import Cart from "../components/Cart";
 
 const BuyBackground = styled.div`
-  background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/buy-background.jpg');
-  background-position: center;
-  background-size: 40%;
-  background-repeat: repeat; ;
+background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/buy-background.jpg');
+  background-size: 400px;
+  display: flex;
 `;
 
 const StyledDiv = styled.div`
-  padding-top: 10vh; ;
+  padding-top: 10vh;
 `;
 
 const WhiteBackground = styled.div`
@@ -27,8 +26,8 @@ const WhiteBackground = styled.div`
 
 const Buy = () => {
   return (
-    <BuyBackground className="">
-      <StyledDiv className="container">
+    <BuyBackground>
+      <StyledDiv className="container media-adjustment">
         <WhiteBackground>
           <CategoryMenu />
         </WhiteBackground>
@@ -38,15 +37,5 @@ const Buy = () => {
     </BuyBackground>
   );
 };
-// const Home = () => {
-//   const [currentCategory, setCategory] = useState("");
-
-//   return (
-//     <div className="container">
-//       <CategoryMenu setCategory={setCategory} />
-//       <ProductList currentCategory={currentCategory} />
-//     </div>
-//   );
-// };
 
 export default Buy;

@@ -92,20 +92,35 @@ const Home = () => {
 
   return (
     <div className="">
-      <StyledHomeBackground className="garage">
+      <StyledHomeBackground className="garage media-cart-placement-adjustment">
         <Stylediv>
           <GarageSign />
           <Stylediv>
             <Buttondiv href="#">
-              <Button to="/buy" className={buttonClass} 
-              onMouseEnter={() => makeButtonsZedIndexGoUp()}>Buy</Button>
-              { Auth.loggedIn() ?
-                <Button to="/sell-item" className={buttonClass}
-                onMouseEnter={() => makeButtonsZedIndexGoUp()}>Sell</Button>
-                :
-                <Button to="/login" className={buttonClass}
-                onMouseEnter={() => makeButtonsZedIndexGoUp()}>Login</Button>
-              }
+              <Button
+                to="/buy"
+                className={buttonClass}
+                onMouseEnter={() => makeButtonsZedIndexGoUp()}
+              >
+                Buy
+              </Button>
+              {Auth.loggedIn() ? (
+                <Button
+                  to="/sell-item"
+                  className={buttonClass}
+                  onMouseEnter={() => makeButtonsZedIndexGoUp()}
+                >
+                  Sell
+                </Button>
+              ) : (
+                <Button
+                  to="/login"
+                  className={buttonClass}
+                  onMouseEnter={() => makeButtonsZedIndexGoUp()}
+                >
+                  Login
+                </Button>
+              )}
             </Buttondiv>
 
             <GarageDoorDiv
