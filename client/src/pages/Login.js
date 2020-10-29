@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-
 import styled from "styled-components"
-import loginPattern from "../assets/images/login-background.jpg"
-
 import { useMutation } from '@apollo/react-hooks';
 import { Link } from "react-router-dom";
 import { LOGIN } from "../utils/mutations"
 import Auth from "../utils/auth";
 
 const StyledLoginBackground = styled.div`
-background-image: url(${loginPattern});
+background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/login-background.jpg');
 position: fixed;
 height: 100vh;
 width: 100vw;

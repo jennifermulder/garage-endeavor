@@ -11,10 +11,9 @@ import {
 import { ADD_PRODUCT } from "../utils/mutations";
 import Auth from "../utils/auth";
 import styled from "styled-components";
-import sellPattern from "../assets/images/sell-background.jpg";
 
 const SellBackground = styled.div`
-  background-image: url(${sellPattern});
+  background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/sell-background.jpg');
   position: fixed;
   height: 100vh;
   width: 100vw;
