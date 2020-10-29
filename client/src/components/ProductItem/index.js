@@ -56,10 +56,10 @@ function ProductItem(item) {
   };
 
   return (
-    <WhiteBackground className="card px-1 py-1">
+    <WhiteBackground className="card px-1 py-1 card-hover">
       <Link to={`/products/${_id}`}>
         <p>{name}</p>
-        <img alt={name} src={`/images/${image}`} />
+        <img alt={name} src={`${image}`} />
       </Link>
       <div>
         <span>${price}</span>
@@ -67,7 +67,9 @@ function ProductItem(item) {
           {quantity} {pluralize("item", quantity)} in stock
         </div>
       </div>
-      <StyledButton onClick={addToCart}>Add to cart</StyledButton>
+      <StyledButton className="button-hover" onClick={addToCart}>
+        Add to cart
+      </StyledButton>
     </WhiteBackground>
   );
 }
