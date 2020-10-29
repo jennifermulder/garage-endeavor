@@ -23,7 +23,7 @@ function Nav() {
       );
     } else {
       return (
-        <ul className="flex-row">
+        <ul className="flex-row changing-size-fix">
           <li className="mx-1">
             <Link to="/signup">
               Signup
