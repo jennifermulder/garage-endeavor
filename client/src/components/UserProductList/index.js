@@ -7,7 +7,7 @@ import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 import Auth from '../../utils/auth';
-import spinner from "../../assets/spinner.gif"
+import spinner from "../../assets/images/spinner.gif"
 
 function UserProductList() {
 // //immediately execute to retrieve current global state object, dispatch to update state  

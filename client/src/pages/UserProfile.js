@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import userPattern from "../assets/images/user-background.jpg";
 import { Link } from "react-router-dom";
 import UserProductList from "../components/UserProductList";
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_USER } from "../utils/queries";
 
 const UserBackground = styled.div`
-  background-image: url(${userPattern});
+  background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/user-background.jpg');
   height: 100vh;
   background-size: 800px;
   display: flex;
