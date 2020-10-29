@@ -59,7 +59,7 @@ function ProductItem(item) {
     <WhiteBackground className="card px-1 py-1">
       <Link to={`/products/${_id}`}>
         <p>{name}</p>
-        <img alt={name} src={`/images/${image}`} />
+        <img alt={name} src={`${image}`} />
       </Link>
       <div>
         <span>${price}</span>
