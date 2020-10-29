@@ -124,7 +124,7 @@ function Detail() {
           <img src={currentProduct.image} alt={currentProduct.name} />
 
           <h3>Similar Items:</h3>
-          <SimilarProductList />
+          <SimilarProductList currentProduct={currentProduct} />
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}

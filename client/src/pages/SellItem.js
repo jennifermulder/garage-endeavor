@@ -20,7 +20,7 @@ const SellBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-;`
+`;
 
 const WhiteBackground = styled.div`
   background-color: white;
@@ -33,11 +33,11 @@ const WhiteBackground = styled.div`
   justify-content: center;
   align-items: center;
   margin: 70px 0 20px 0;
-;`
+`;
 
 const StyledForm = styled.form`
   width: 100%;
-;`
+`;
 
 const StyledInput = styled.input`
   width: 100%;
@@ -48,7 +48,7 @@ const StyledInput = styled.input`
   border: 1px solid;
   border-radius: 4px;
   box-sizing: border-box;
-;`
+`;
 
 const StyledSelect = styled.select`
   width: 100%;
@@ -59,7 +59,7 @@ const StyledSelect = styled.select`
   border: 1px solid;
   border-radius: 4px;
   box-sizing: border-box;
-;`
+`;
 
 const StyledTextArea = styled.textarea`
   width: 100%;
@@ -70,7 +70,7 @@ const StyledTextArea = styled.textarea`
   border: 1px solid;
   border-radius: 4px;
   box-sizing: border-box;
-;`
+`;
 
 const StyledPhotoInput = styled.input`
   width: 100%;
@@ -81,7 +81,7 @@ const StyledPhotoInput = styled.input`
   border: 1px solid;
   border-radius: 4px;
   box-sizing: border-box;
-;`
+`;
 
 const Error = styled.span`
   display: none;
@@ -92,21 +92,29 @@ const StyledButton = styled.button`
   margin: 3px;
   background-color: lightpink;
   color: black;
-;`
-
+`;
 
 const SellItem = () => {
   const [state, dispatch] = useStoreContext();
   const { data: categoryData } = useQuery(QUERY_CATEGORIES);
-  const [ addProduct, {error} ] = useMutation(ADD_PRODUCT);
+  const [addProduct, { error }] = useMutation(ADD_PRODUCT);
   const { data, loading } = useQuery(QUERY_PRODUCTS);
-  
-  let userID = '';
-  if(Auth.loggedIn()) {
+
+  let userID = "";
+  if (Auth.loggedIn()) {
     userID = Auth.getProfile().data._id;
   }
 
-  const [formState, setFormState] = useState({ name: '', category: '', quantity: '', price: '', description: '', tag: '', image: '', user: userID });
+  const [formState, setFormState] = useState({
+    name: "",
+    category: "",
+    quantity: "",
+    price: "",
+    description: "",
+    tag: "",
+    image: "",
+    user: userID,
+  });
   let { categories } = state;
   categories = categories.slice(0, 5);
 
@@ -114,82 +122,87 @@ const SellItem = () => {
     // if categoryData exists or has changed from the response of useQuery, then run dispatch()
     if (categoryData) {
       dispatch({
-          type: UPDATE_CATEGORIES,
-          categories: categoryData.categories
+        type: UPDATE_CATEGORIES,
+        categories: categoryData.categories,
       });
       //save to idb store
-      categoryData.categories.forEach(category => {
-          idbPromise('categories', 'put', category);
+      categoryData.categories.forEach((category) => {
+        idbPromise("categories", "put", category);
       });
-    }
-    else if (!loading) {
-      idbPromise('categories', 'get').then(categories => {
-          dispatch({
+    } else if (!loading) {
+      idbPromise("categories", "get").then((categories) => {
+        dispatch({
           type: UPDATE_CATEGORIES,
-          categories: categories
-          });
+          categories: categories,
+        });
       });
     }
   }, [categoryData, loading, dispatch]);
 
-  const handleFormSubmit = async event => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    if(formState.name && !isNaN(parseInt(formState.price)) && formState.category && formState.user && formState.image) {
+    if (
+      formState.name &&
+      !isNaN(parseInt(formState.price)) &&
+      formState.category &&
+      formState.user &&
+      formState.image
+    ) {
       if (data) {
         const newProduct = await addProduct({
           variables: {
-            name: formState.name, 
+            name: formState.name,
             description: formState.description,
             tag: formState.tag,
             quantity: parseInt(formState.quantity),
             image: formState.image,
             price: parseInt(formState.price),
             category: formState.category,
-            user: formState.user
-          }
-        }); 
-        
+            user: formState.user,
+          },
+        });
+
         dispatch({
           type: UPDATE_PRODUCTS,
-          products: [...data.products, newProduct]
+          products: [...data.products, newProduct],
         });
-    
-        idbPromise('products', 'put', newProduct.data.addProduct);
 
-        if(newProduct.data.addProduct.name) {
-          window.location.assign(`/redirect?${newProduct.data.addProduct.name}`);
+        idbPromise("products", "put", newProduct.data.addProduct);
+
+        if (newProduct.data.addProduct.name) {
+          window.location.assign(
+            `/redirect?${newProduct.data.addProduct.name}`
+          );
         }
-      } 
-      else if (!loading) {
-        idbPromise('products', 'get').then((products) => {
+      } else if (!loading) {
+        idbPromise("products", "get").then((products) => {
           dispatch({
             type: UPDATE_PRODUCTS,
-            products: products
+            products: products,
           });
         });
       }
-    }
-    else {
-      document.getElementById('error-msg').style.display = 'block';
+    } else {
+      document.getElementById("error-msg").style.display = "block";
     }
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     let { name, value } = event.target;
-    if(name === 'image') {
-      value = document.querySelector('#image').files[0];
+    if (name === "image") {
+      value = document.querySelector("#image").files[0];
     }
-    
+
     setFormState({
       ...formState,
-      [name]: value
+      [name]: value,
     });
   };
 
   return (
     <SellBackground>
-      { Auth.loggedIn() ?
+      {Auth.loggedIn() ? (
         <WhiteBackground className="sell-adjustment">
           <h1>Add a Listing</h1>
           <StyledForm onSubmit={handleFormSubmit}>
@@ -233,10 +246,10 @@ const SellItem = () => {
               onChange={handleChange}
             />
             <label>Item Tag</label>
-            <StyledTextArea 
-                name='tag'
-                placeholder='Add a tag'
-                onChange={handleChange}
+            <StyledTextArea
+              name="tag"
+              placeholder="Add a tag"
+              onChange={handleChange}
             />
             <label>Upload an Image</label>
             <StyledPhotoInput
@@ -245,20 +258,25 @@ const SellItem = () => {
               type="file"
               onChange={handleChange}
             />
-            <Error id='error-msg'>*Either a required field is missing or information has been inputted incorrectly.  Please review your information.</Error>
+            <Error id="error-msg">
+              *Either a required field is missing or information has been
+              inputted incorrectly. Please review your information.
+            </Error>
             <div className="flex-row flex-end">
-              <StyledButton className="button-hover" type="submit">Add Listing</StyledButton>
+              <StyledButton className="button-hover" type="submit">
+                Add Listing
+              </StyledButton>
             </div>
           </StyledForm>
         </WhiteBackground>
-      :
-      <WhiteBackground>
-        <div>
-          <h2>You must be logged in to add a listing.</h2>
-          <a href='login'>Login</a>
-        </div>
-      </WhiteBackground>
-    }
+      ) : (
+        <WhiteBackground>
+          <div>
+            <h2>You must be logged in to add a listing.</h2>
+            <a href="login">Login</a>
+          </div>
+        </WhiteBackground>
+      )}
     </SellBackground>
   );
 };

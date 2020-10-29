@@ -8,11 +8,9 @@ import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 import spinner from "../../assets/spinner.gif"
 
-function SimilarProductList() {
+function SimilarProductList({tag, _id}) {
 //immediately execute to retrieve current global state object, dispatch to update state  
 const [state, dispatch] = useStoreContext();
-//products are being retrieved from the state object
-const { currentProduct } = state;
 
 const { loading, data } = useQuery(QUERY_PRODUCTS);
 //when product data from the useQuery() Hook's response to the global state object is saved with the dispatch() method, we also save each file to the products object store in IndexedDB using the idbPromise() function
@@ -43,18 +41,19 @@ useEffect(() => {
 }, [data, loading, dispatch]);
 
 function filterProducts() {
-  if (!currentProduct) {
-    return state.products;
+  const similarProds = state.products.filter(product => (product.tag === tag && product._id !== _id));
+  if(similarProds.length !== 0) {
+    return similarProds;
   }
-  
-  return state.products.filter(product => product.tag === currentProduct.tag);
+  return false;
 }
 
   return (
     <div className="my-2">
       {state.products.length ? (
         <div className="flex-row">
-            {filterProducts().map(product => (
+            {filterProducts() ?
+            filterProducts().map(product => (
                 <ProductItem
                   key= {product._id}
                   _id={product._id}
@@ -63,7 +62,10 @@ function filterProducts() {
                   price={product.price}
                   quantity={product.quantity}
                 />
-            ))}
+            ))
+            :
+            <span>No similar products found.</span>
+          }
         </div>
       ) : (
         <h3>You haven't added anything for sale yet!</h3>

@@ -44,13 +44,13 @@ const StyledInput = styled.input`
   display: inline-block;
   border: 1px solid;
   border-radius: 4px;
-  box-sizing: border-box; ;
+  box-sizing: border-box;
 `;
 
 const StyledButton = styled.button`
   margin: 3px;
   background-color: lightpink;
-  color: black; ;
+  color: black;
 `;
 
 function Signup(props) {

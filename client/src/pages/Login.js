@@ -26,7 +26,7 @@ const WhiteBackground = styled.div`
   border-radius: 10px;
   color: black;
   z-index: 2;
-  width: 80%;
+  width: 40%;
   padding: 20px;
   justify-content: center;
   align-items: center;
@@ -44,13 +44,13 @@ const StyledInput = styled.input`
   display: inline-block;
   border: 1px solid;
   border-radius: 4px;
-  box-sizing: border-box; ;
+  box-sizing: border-box;
 `;
 
 const StyledButton = styled.button`
   margin: 3px;
   background-color: lightpink;
-  color: black; ;
+  color: black;
 `;
 
 function Login(props) {
