@@ -16,6 +16,26 @@ import spinner from "../assets/spinner.gif";
 import SimilarProductList from "../components/SimilarProductList";
 import Cart from "../components/Cart";
 import styled from "styled-components";
+import buyPattern from "../assets/images/buy-background.jpg";
+
+const BuyBackground = styled.div`
+  background-image: url(${buyPattern});
+  height: 100vh;
+  background-size: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const WhiteBackground = styled.div`
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  color: black;
+  z-index: 0;
+  width: 100%;
+  padding: 20px;
+`;
 
 const FormatButton = styled.button`
   background-color: lightpink;
@@ -98,38 +118,42 @@ function Detail() {
   }, [products, data, loading, dispatch, id]);
 
   return (
-    <StyledDiv className="media-adjustment">
-      {currentProduct ? (
-        <div className="container my-1">
-          <Link to="/">← Back to Products</Link>
+    <BuyBackground>
+      <StyledDiv className="media-adjustment">
+        <WhiteBackground>
+          {currentProduct ? (
+            <div className="container my-1">
+              <Link to="/buy">← Back to Products</Link>
 
-          <h2>{currentProduct.name}</h2>
+              <h2>{currentProduct.name}</h2>
 
-          <p>{currentProduct.description}</p>
+              <p>{currentProduct.description}</p>
 
-          <p>
-            <strong>Price:</strong>${currentProduct.price}{" "}
-            <FormatButton className="button-hover" onClick={addToCart}>
-              Add to Cart
-            </FormatButton>
-            <FormatButton
-              className="button-hover"
-              disabled={!cart.find((p) => p._id === currentProduct._id)}
-              onClick={removeFromCart}
-            >
-              Remove from Cart
-            </FormatButton>
-          </p>
+              <p>
+                <strong>Price:</strong>${currentProduct.price}{" "}
+                <FormatButton className="button-hover" onClick={addToCart}>
+                  Add to Cart
+                </FormatButton>
+                <FormatButton
+                  className="button-hover"
+                  disabled={!cart.find((p) => p._id === currentProduct._id)}
+                  onClick={removeFromCart}
+                >
+                  Remove from Cart
+                </FormatButton>
+              </p>
 
-          <img src={currentProduct.image} alt={currentProduct.name} />
+              <img src={currentProduct.image} alt={currentProduct.name} />
 
-          <h3>Similar Items:</h3>
-          <SimilarProductList currentProduct={currentProduct} />
-        </div>
-      ) : null}
-      {loading ? <img src={spinner} alt="loading" /> : null}
-      <Cart />
-    </StyledDiv>
+              <h3>Similar Items:</h3>
+              <SimilarProductList currentProduct={currentProduct} />
+            </div>
+          ) : null}
+          {loading ? <img src={spinner} alt="loading" /> : null}
+          <Cart />
+        </WhiteBackground>
+      </StyledDiv>
+    </BuyBackground>
   );
 }
 

@@ -15,7 +15,7 @@ import sellPattern from "../assets/images/sell-background.jpg";
 
 const SellBackground = styled.div`
   background-image: url(${sellPattern});
-  width: 100vw;
+  height: 100vh;
   background-size: 400px;
   display: flex;
   justify-content: center;

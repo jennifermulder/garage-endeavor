@@ -10,10 +10,7 @@ import Auth from "../utils/auth";
 
 const StyledLoginBackground = styled.div`
   background-image: url(${loginPattern});
-  position: fixed;
   height: 100vh;
-  width: 100vw;
-  background-position: center;
   background-size: 400px;
   display: flex;
   justify-content: center;
@@ -25,11 +22,9 @@ const WhiteBackground = styled.div`
   border: 2px solid black;
   border-radius: 10px;
   color: black;
-  z-index: 2;
+  z-index: 0;
   width: 40%;
   padding: 20px;
-  justify-content: center;
-  align-items: center;
 `;
 
 const StyledForm = styled.form`

@@ -8,10 +8,7 @@ import { QUERY_USER } from "../utils/queries";
 
 const UserBackground = styled.div`
   background-image: url(${userPattern});
-  position: fixed;
   height: 100vh;
-  width: 100vw;
-  background-position: center;
   background-size: 800px;
   display: flex;
   justify-content: center;
@@ -23,11 +20,9 @@ const WhiteBackground = styled.div`
   border: 2px solid black;
   border-radius: 10px;
   color: black;
-  z-index: 2;
+  z-index: 0;
   width: 80%;
   padding: 20px;
-  justify-content: center;
-  align-items: center;
 `;
 
 function UserProfile() {
