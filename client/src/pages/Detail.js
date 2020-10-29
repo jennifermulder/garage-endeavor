@@ -11,8 +11,7 @@ import {
   UPDATE_PRODUCTS,
 } from '../utils/actions';
 import { idbPromise } from "../utils/helpers";
-// import { idbPromise } from "../../utils/helpers";
-import spinner from '../assets/spinner.gif'
+import spinner from '../assets/images/spinner.gif'
 import SimilarProductList from "../components/SimilarProductList";
 import Cart from '../components/Cart';
 import styled from "styled-components";

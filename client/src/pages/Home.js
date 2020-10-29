@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import garageSign from "../assets/images/garage-sale-sign.gif";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 
@@ -36,7 +37,7 @@ const GarageDoorDiv = styled.div`
 
 const GarageSign = styled.section`
   transform: rotate(60deg);
-  background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/garage-sale-sign.gif');
+  background-image: url(${garageSign});
   background-size: 100% 100%;
   height: 17vh;
   width: 27vh;
