@@ -220,14 +220,23 @@ input:focus {
 }
 
 @media (max-width: 588px) {
+  .adjustment{
+    width: 80% !important;
+  }
+  .sell-adjustment{
+    width: 80% !important;
+    margin-top: 20vh !important;
+  }
   .media-adjustment {
     padding-top: 120px !important;
   }
   .media-cart-adjustment {
     margin: -2vh 0.5vh 0 0 !important;
   }
+  .media-cart-placement-adjustment {
+    margin: 12.5vh 0 0 0 !important;
+  }
 }
-
 
 .garage div:hover {
   background-position: 0 -515px !important;

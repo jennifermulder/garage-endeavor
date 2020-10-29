@@ -15,15 +15,11 @@ import sellPattern from "../assets/images/sell-background.jpg";
 
 const SellBackground = styled.div`
   background-image: url(${sellPattern});
-  position: fixed;
-  height: 100vh;
   width: 100vw;
-  background-position: center;
-  background-size: 60%;
+  background-size: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-repeat: repeat;
 ;`
 
 const WhiteBackground = styled.div`
@@ -31,10 +27,12 @@ const WhiteBackground = styled.div`
   border: 2px solid black;
   border-radius: 10px;
   color: black;
-  z-index: 2;
-  width: 80%;
+  z-index: 0;
+  width: 60%;
   padding: 20px;
-  margin-top: 50px;
+  justify-content: center;
+  align-items: center;
+  margin: 70px 0 20px 0;
 ;`
 
 const StyledForm = styled.form`
@@ -192,8 +190,7 @@ const SellItem = () => {
   return (
     <SellBackground>
       { Auth.loggedIn() ?
-      <div className="container">
-        <WhiteBackground>
+        <WhiteBackground className="sell-adjustment">
           <h1>Add a Listing</h1>
           <StyledForm onSubmit={handleFormSubmit}>
             <label>Listing Title</label>
@@ -254,7 +251,6 @@ const SellItem = () => {
             </div>
           </StyledForm>
         </WhiteBackground>
-      </div>
       :
       <WhiteBackground>
         <div>

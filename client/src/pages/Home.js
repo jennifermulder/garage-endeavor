@@ -94,7 +94,7 @@ const Home = () => {
 
   return (
     <div className="">
-      <StyledHomeBackground className="garage">
+      <StyledHomeBackground className="garage media-cart-placement-adjustment">
         <Stylediv>
           <GarageSign />
           <Stylediv>

@@ -23,6 +23,12 @@ const IconDiv = styled.div`
   z-index: 2;
 `;
 
+const StyledButton = styled.button`
+  margin: 3px;
+  background-color: lightpink;
+  color: black;
+;`
+
 //use to perform checkout redirect
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
@@ -70,7 +76,7 @@ const Cart = () => {
 
   if (!state.cartOpen) {
     return (
-      <CartDiv>
+      <CartDiv className="media-adjustment">
         <IconDiv className="cart-closed media-cart-adjustment" onClick={toggleCart}>
           <img src={shoppingIcon} />
         </IconDiv>
@@ -94,7 +100,7 @@ const Cart = () => {
 
   //toggle on cartOpen value when [close] text is clicked
   return (
-    <CartDiv className="cart">
+    <CartDiv className="cart media-cart-placement-adjustment">
       <div className="close" onClick={toggleCart}>
         [close]
       </div>
@@ -107,7 +113,7 @@ const Cart = () => {
           <div className="flex-row space-between">
             <strong>Total: ${calculateTotal()}</strong>
             {Auth.loggedIn() ? (
-              <button onClick={submitCheckout}>Checkout</button>
+              <StyledButton className="button-hover" onClick={submitCheckout}>Checkout</StyledButton>
             ) : (
               <span>(log in to check out)</span>
             )}
