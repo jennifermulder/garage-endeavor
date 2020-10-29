@@ -30,6 +30,12 @@ width: 80%;
 padding: 20px;
 ;`
 
+const StyledButton = styled.button`
+  margin: 3px;
+  background-color: lightpink;
+  color: black;
+;`
+
 function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' })
   const [login, { error }] = useMutation(LOGIN);
@@ -88,9 +94,9 @@ function Login(props) {
               </div> : null
             }
             <div className="flex-row flex-end">
-              <button type="submit">
+              <StyledButton className="button-hover" type="submit">
                 Submit
-              </button>
+              </StyledButton>
             </div>
           </form>
         </WhiteBackground>

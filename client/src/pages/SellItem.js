@@ -34,6 +34,7 @@ const WhiteBackground = styled.div`
   z-index: 2;
   width: 80%;
   padding: 20px;
+  margin-top: 50px;
 ;`
 
 const StyledForm = styled.form`
@@ -88,6 +89,13 @@ const Error = styled.span`
   display: none;
   color: red;
 `;
+
+const StyledButton = styled.button`
+  margin: 3px;
+  background-color: lightpink;
+  color: black;
+;`
+
 
 const SellItem = () => {
   const [state, dispatch] = useStoreContext();
@@ -242,7 +250,7 @@ const SellItem = () => {
             />
             <Error id='error-msg'>*Either a required field is missing or information has been inputted incorrectly.  Please review your information.</Error>
             <div className="flex-row flex-end">
-              <button type="submit">Add Listing</button>
+              <StyledButton className="button-hover" type="submit">Add Listing</StyledButton>
             </div>
           </StyledForm>
         </WhiteBackground>

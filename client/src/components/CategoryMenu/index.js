@@ -61,6 +61,7 @@ function CategoryMenu() {
       <h2>Choose a Category:</h2>
       {categories.map(item => (
         <StyledButton
+          className="button-hover"
           key={item._id}
           onClick={() => {
             handleClick(item._id);

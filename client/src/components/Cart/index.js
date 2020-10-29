@@ -9,9 +9,18 @@ import { idbPromise } from "../../utils/helpers";
 import { QUERY_CHECKOUT } from "../../utils/queries";
 import { loadStripe } from "@stripe/stripe-js";
 import styled from "styled-components";
+import shoppingIcon from "../../assets/images/shoppingcart-icon.png";
 
 const CartDiv = styled.div`
-  padding-top: 100px;
+  margin: 50px 0 0 0;
+`;
+
+const IconDiv = styled.div`
+  position: fixed;
+  margin: 6vh 0.5vh 0 0;
+  background-color: transparent;
+  width: 12vh;
+  z-index: 2;
 `;
 
 //use to perform checkout redirect
@@ -62,11 +71,9 @@ const Cart = () => {
   if (!state.cartOpen) {
     return (
       <CartDiv>
-        <div className="cart-closed" onClick={toggleCart}>
-          <span role="img" aria-label="trash">
-            🛒
-          </span>
-        </div>
+        <IconDiv className="cart-closed media-cart-adjustment" onClick={toggleCart}>
+          <img src={shoppingIcon} />
+        </IconDiv>
       </CartDiv>
     );
   }

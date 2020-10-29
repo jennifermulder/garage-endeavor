@@ -215,6 +215,20 @@ input:focus {
   }
 }
 
+.changing-size-fix {
+  padding-left: 88px;
+}
+
+@media (max-width: 588px) {
+  .media-adjustment {
+    padding-top: 120px !important;
+  }
+  .media-cart-adjustment {
+    margin: -2vh 0.5vh 0 0 !important;
+  }
+}
+
+
 .garage div:hover {
   background-position: 0 -515px !important;
 }
@@ -228,4 +242,29 @@ input:focus {
 
 .make-garage-door-stay-up {
   background-position: 0 -515px !important;
+}
+
+.card-hover {
+	-webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+  box-shadow: -10px 10px 3px -5px #666;
+}
+
+.card-hover:hover {
+  transform: translate(0, -10px);
+  box-shadow: -10px 20px 10px -5px #666;
+}
+
+.button-hover {
+	-webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+
+.button-hover:hover {
+  transform: translate(0, -2px);
+  filter: brightness(110%);
 }
