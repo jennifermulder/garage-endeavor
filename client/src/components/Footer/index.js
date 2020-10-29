@@ -71,7 +71,7 @@ function Footer() {
 
               <StyledP>Jennifer Mulder</StyledP>
               <StyledHrJM/>
-              <li><a href="https://www.linkedin.com/in/scot-itakura-289376157/">Linkedin</a></li>
+              <li><a href="https://www.linkedin.com/in/jennifer-mulder-cpa-2125b571/">Linkedin</a></li>
               <li><a href="https://github.com/jennifermulder">Github</a></li>
 
               <StyledP>Scot Itakura</StyledP>

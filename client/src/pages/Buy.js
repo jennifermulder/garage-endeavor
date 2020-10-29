@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import buyPattern from "../assets/images/buy-background.jpg";
 import ProductList from "../components/ProductList";
 import CategoryMenu from "../components/CategoryMenu";
 import Cart from "../components/Cart";
