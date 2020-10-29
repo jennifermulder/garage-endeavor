@@ -8,7 +8,7 @@ import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 import spinner from "../../assets/spinner.gif"
 
-function SimilarProductList({tag, _id}) {
+function SimilarProductList({currentProduct}) {
 //immediately execute to retrieve current global state object, dispatch to update state  
 const [state, dispatch] = useStoreContext();
 
@@ -41,7 +41,7 @@ useEffect(() => {
 }, [data, loading, dispatch]);
 
 function filterProducts() {
-  const similarProds = state.products.filter(product => (product.tag === tag && product._id !== _id));
+  const similarProds = state.products.filter(product => (product.tag === currentProduct.tag && product._id !== currentProduct._id));
   if(similarProds.length !== 0) {
     return similarProds;
   }
