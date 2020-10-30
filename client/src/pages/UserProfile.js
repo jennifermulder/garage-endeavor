@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import UserProductList from "../components/UserProductList";
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_USER } from "../utils/queries";
+import ProductItem from "../components/ProductItem";
 
 const UserBackground = styled.div`
   background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/user-background.jpg');
@@ -53,16 +54,15 @@ function UserProfile() {
                   {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
                 </h3>
                 <div className="flex-row">
-                  {order.products.map(({ _id, image, name, price }, index) => (
-                    <div key={index} className="card px-1 py-1">
-                      <Link to={`/products/${_id}`}>
-                        <img alt={name} src={`/images/${image}`} />
-                        <p>{name}</p>
-                      </Link>
-                      <div>
-                        <span>${price}</span>
-                      </div>
-                    </div>
+                  {order.products.map(({ _id, image, name, price, quantity }, index) => (
+                    <ProductItem
+                      key= {_id}
+                      _id={_id}
+                      image={image}
+                      name={name}
+                      price={price}
+                      quantity={quantity}
+                    />
                   ))}
                 </div>
               </div>
