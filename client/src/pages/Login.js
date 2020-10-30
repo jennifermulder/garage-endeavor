@@ -7,7 +7,7 @@ import Auth from "../utils/auth";
 
 const StyledLoginBackground = styled.div`
 background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/login-background.jpg');
-  height: 100vh;
+  height: inherit;
   background-size: 400px;
   display: flex;
   justify-content: center;
@@ -22,6 +22,7 @@ const WhiteBackground = styled.div`
   z-index: 0;
   width: 40%;
   padding: 20px;
+  margin: 260px 0 180px 0;
 `;
 
 const StyledForm = styled.form`

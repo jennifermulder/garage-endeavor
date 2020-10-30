@@ -18,6 +18,7 @@ const WhiteBackground = styled.div`
   border: 2px solid black;
   border-radius: 10px;
   color: black;
+  // height: initial;
   align-items: center;
   justify-content: center;
   margin: 0 4% 3%;

@@ -1,13 +1,18 @@
 import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledHeader = styled.header`
+  z-index: 10;
+  `
 
 function Nav() {
 
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-        <ul className="flex-row">
+        <ul className="flex-row changing-size-profile-logout">
           <li className="mx-1">
             <Link to="/user">
               User Profile
@@ -23,7 +28,7 @@ function Nav() {
       );
     } else {
       return (
-        <ul className="flex-row changing-size-fix">
+        <ul className="flex-row changing-size-signup-login">
           <li className="mx-1">
             <Link to="/signup">
               Signup
@@ -40,18 +45,18 @@ function Nav() {
   }
 
   return (
-    <header className="flex-row px-1">
+    <StyledHeader className="flex-row px-1">
       <h1>
         <Link to="/">
           <span role="img" aria-label="shopping bag"></span>
-          Garage Endeavors
+          Garage Collage
         </Link>
       </h1>
 
       <nav>
         {showNavigation()}
       </nav>
-    </header>
+    </StyledHeader>
   );
 }
 

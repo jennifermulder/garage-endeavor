@@ -15,15 +15,13 @@ import spinner from '../assets/images/spinner.gif'
 import SimilarProductList from "../components/SimilarProductList";
 import Cart from "../components/Cart";
 import styled from "styled-components";
-import buyPattern from "../assets/images/buy-background.jpg";
 
 const BuyBackground = styled.div`
-  background-image: url(${buyPattern});
-  height: 100vh;
+  background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/buy-background.jpg');
+  height: inherit;
   background-size: 400px;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 const WhiteBackground = styled.div`
@@ -34,15 +32,18 @@ const WhiteBackground = styled.div`
   z-index: 0;
   width: 100%;
   padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  justify-content: center;
 `;
 
 const FormatButton = styled.button`
   background-color: lightpink;
-  color: black; ;
+  color: black;
 `;
 
 const StyledDiv = styled.div`
-  padding-top: 60px; ;
+  padding-top: 60px;
 `;
 
 function Detail() {
@@ -118,7 +119,7 @@ function Detail() {
 
   return (
     <BuyBackground>
-      <StyledDiv className="media-adjustment">
+      <StyledDiv className="container media-adjustment">
         <WhiteBackground>
           {currentProduct ? (
             <div className="container my-1">
