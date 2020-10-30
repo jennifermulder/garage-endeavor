@@ -204,14 +204,15 @@ const SellItem = () => {
       {Auth.loggedIn() ? (
         <WhiteBackground className="sell-adjustment">
           <h1>Add a Listing</h1>
+          <span>*Required Field</span>
           <StyledForm onSubmit={handleFormSubmit}>
-            <label>Listing Title</label>
+            <label>Listing Title*</label>
             <StyledInput
               name="name"
               placeholder="Add a title"
               onChange={handleChange}
             />
-            <label>Category</label>
+            <label>Category*</label>
             <StyledSelect
               name="category"
               placeholder="Add a category"
@@ -224,7 +225,7 @@ const SellItem = () => {
                 <option value={category._id}>{category.name}</option>
               ))}
             </StyledSelect>
-            <label>Price</label>
+            <label>Price*</label>
             <StyledInput
               name="price"
               placeholder="Add a price"
@@ -244,13 +245,13 @@ const SellItem = () => {
               placeholder="Add a description"
               onChange={handleChange}
             />
-            <label>Item Tag</label>
+            <label>Item Tag*</label>
             <StyledTextArea
               name="tag"
               placeholder="Add a tag"
               onChange={handleChange}
             />
-            <label>Upload an Image</label>
+            <label>Upload an Image*</label>
             <StyledPhotoInput
               name="image"
               id="image"
