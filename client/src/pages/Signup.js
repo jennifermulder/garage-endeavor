@@ -7,7 +7,7 @@ import { ADD_USER } from "../utils/mutations";
 
 const StyledSignupBackground = styled.div`
   background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/signup-background.jpg');
-  height: 100vh;
+  height: inherit;
   background-size: 400px;
   display: flex;
   justify-content: center;
@@ -22,6 +22,7 @@ const WhiteBackground = styled.div`
   z-index: 0;
   width: 40%;
   padding: 20px;
+  margin: 162px 0 110px 0;
 `;
 
 const StyledForm = styled.form`

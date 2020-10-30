@@ -14,7 +14,7 @@ import styled from "styled-components";
 
 const SellBackground = styled.div`
   background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/sell-background.jpg');
-  height: 100vh;
+  height: inherit;
   background-size: 400px;
   display: flex;
   justify-content: center;

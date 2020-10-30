@@ -20,7 +20,7 @@ const IconDiv = styled.div`
   margin: 6vh 0.5vh 0 0;
   background-color: transparent;
   width: 12vh;
-  z-index: 2;
+  z-index: 11;
 `;
 
 const StyledButton = styled.button`

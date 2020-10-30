@@ -66,7 +66,7 @@ function Footer() {
             <ul className="footer-links">
               <StyledP>Sara Hu</StyledP>
               <StyledHrSH/>
-              <li><a href="https://www.linkedin.com/in/scot-itakura-289376157/">Linkedin</a></li>
+              <li><a href="https://www.linkedin.com/in/sara-hu-12394311b/">Linkedin</a></li>
               <li><a href="https://github.com/shhu21">Github</a></li>
 
               <StyledP>Jennifer Mulder</StyledP>

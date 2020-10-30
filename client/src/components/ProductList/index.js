@@ -6,7 +6,6 @@ import { QUERY_PRODUCTS } from "../../utils/queries";
 import { useStoreContext } from "../../utils/GlobalState";
 import { UPDATE_PRODUCTS } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
-import spinner from "../../assets/spinner.gif";
 import styled from "styled-components";
 
 const WhiteBackground = styled.div`
@@ -85,7 +84,7 @@ function ProductList() {
       ) : (
         <h3>You haven't added anything for sale yet!</h3>
       )}
-      {loading ? <img src={spinner} alt="loading" /> : null}
+      {/* {loading ? <img src={spinner} alt="loading" /> : null} */}
     </div>
   );
 }
