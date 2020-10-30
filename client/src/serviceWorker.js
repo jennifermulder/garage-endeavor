@@ -9,7 +9,7 @@
 
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://bit.ly/CRA-PWA
-
+console.log(navigator, "navigator")
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
   // [::1] is the IPv6 localhost address.
@@ -58,6 +58,7 @@ export function register(config) {
 }
 
 function registerValidSW(swUrl, config) {
+  console.log("service worker line 62")
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
@@ -102,6 +103,7 @@ function registerValidSW(swUrl, config) {
 }
 
 function checkValidServiceWorker(swUrl, config) {
+  console.log("service worker line 106")
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl, {
     headers: { 'Service-Worker': 'script' },
