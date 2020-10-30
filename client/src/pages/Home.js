@@ -8,7 +8,6 @@ const StyledHomeBackground = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
   background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/open-garage-door.png');
   left: 0;
   right: 0;
@@ -18,7 +17,8 @@ const StyledHomeBackground = styled.div`
   background-size: 100vh 100%;
   background-position: center;
   background-repeat: repeat-x;
-  z-index: -1; ;
+  z-index: -1; 
+  padding-top: 100vh;
 `;
 
 const GarageDoorDiv = styled.div`
@@ -32,10 +32,12 @@ const GarageDoorDiv = styled.div`
   margin: 0.5vh 0 0 2vh;
   z-index: 3;
   display: flex;
-  align-items: center; ;
+  align-items: center;
+  margin-top: -61vh !important;
 `;
 
 const GarageSign = styled.section`
+  position: absolute;
   transform: rotate(60deg);
   background-image: url(${garageSign});
   background-size: 100% 100%;
@@ -43,7 +45,7 @@ const GarageSign = styled.section`
   width: 27vh;
   background-repeat: no-repeat;
   z-index: 2;
-  margin-top: 21vh; ;
+  margin-top: -78vh !important;
 `;
 
 const Stylediv = styled.div`
@@ -54,7 +56,7 @@ const Stylediv = styled.div`
 `;
 
 const Buttondiv = styled.section`
-  margin-top: 33%;
+  margin-top: -45vh;
 `;
 
 const Button = styled(Link)`

@@ -7,7 +7,7 @@ import { QUERY_USER } from "../utils/queries";
 
 const UserBackground = styled.div`
   background-image: url('https://garageendeavor.s3.us-west-1.amazonaws.com/user-background.jpg');
-  height: 100vh;
+  height: inherit;
   background-size: 800px;
   display: flex;
   justify-content: center;
@@ -22,6 +22,7 @@ const WhiteBackground = styled.div`
   z-index: 0;
   width: 80%;
   padding: 20px;
+  margin: 90px 0 50px 0;
 `;
 
 function UserProfile() {

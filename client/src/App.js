@@ -15,6 +15,7 @@ import SellItem from "./pages/SellItem";
 import { StoreProvider } from "./utils/GlobalState";
 import UserProfile from "./pages/UserProfile";
 import Redirect from './pages/Redirect';
+import Footer from './components/Footer';
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -50,6 +51,7 @@ function App() {
               <Route exact path="/sell-item" component={SellItem} />
               <Route component={NoMatch} />
             </Switch>
+            <Footer />
           </StoreProvider>
         </div>
       </Router>
