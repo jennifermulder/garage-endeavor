@@ -14,9 +14,19 @@ function Nav() {
       return (
         <ul className="flex-row changing-size-profile-logout">
           <li className="mx-1">
+            <Link to="/buy">
+              Shop
+            </Link>
+          </li>
+          <li className="mx-1">
             <Link to="/user">
               User Profile
             </Link>
+          </li>
+          <li className="mx-1">
+            <a href="/sell-item">
+              Sell
+            </a>
           </li>
           <li className="mx-1">
             {/* this is not using the Link component to logout or user and then refresh the application to the start */}
@@ -29,6 +39,11 @@ function Nav() {
     } else {
       return (
         <ul className="flex-row changing-size-signup-login">
+          <li className="mx-1">
+            <Link to="/buy">
+              Shop
+            </Link>
+          </li>
           <li className="mx-1">
             <Link to="/signup">
               Signup

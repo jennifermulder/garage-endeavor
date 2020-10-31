@@ -104,7 +104,7 @@ const Home = () => {
                 className={buttonClass}
                 onMouseEnter={() => makeButtonsZedIndexGoUp()}
               >
-                Buy
+                Shop
               </Button>
               {Auth.loggedIn() ? (
                 <Button

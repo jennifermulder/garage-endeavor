@@ -115,7 +115,6 @@ const SellItem = () => {
     user: userID,
   });
   let { categories } = state;
-  categories = categories.slice(0, 5);
 
   useEffect(() => {
     // if categoryData exists or has changed from the response of useQuery, then run dispatch()
