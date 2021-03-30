@@ -29,7 +29,16 @@ The user is able to track their activity by navigating to the User Profile page 
 * Concurrently
 
 ## Usage
-To run program: node server
+To run program: `node server`.  From the homepage the user may choose to sign-in or create an account if he/she has not already registered an account.  If the user chooses to not sign-in they may still browse the inventory of goods, however, they will need to sign-in to post any items for sale or purchase any items in their cart.
+
+### Shop
+The user will find all the available items to buy on this page and they may filter their search by selecting a category at the top of the page.  The user may, also, click on an item to view additional product information and view a list of similar products.  Add any product to the cart by clicking the `Add to Cart` button or remove an item by clicking the `Remove from Cart` button.
+
+### Sell An Item
+To post an item for sale, be sure to have signed into a registered account and then click on the `Sell` tab in the navigation bar at the top of the page.  The user will be redirected to a form where they can input the information of the item they wish to put up for sale.  Once, they have submitted their form with the necessary information they will be sent to a redirect page where they may choose to put another item up for sale or return to the shop page.
+
+### User's Page
+This page contains the logged in user's information and any past order history of the user.
 
 ## Deployed Application
 
